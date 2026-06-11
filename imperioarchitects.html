@@ -96,9 +96,9 @@ nav{
 }
 .hero-anno{
   font-family:var(--mono);
-  font-size:10px;font-weight:400;
+  font-size:10px;font-weight:700;
   letter-spacing:0.12em;
-  color:rgba(107,133,255,0.85);
+  color:rgba(107,133,255,1);
   margin-bottom:28px;
   display:flex;align-items:center;gap:8px;
   opacity:0;transform:translateY(16px);
@@ -168,7 +168,7 @@ nav{
 
 /* ── SHARED SECTION PRIMITIVES ── */
 .s-eyebrow{
-  font-family:var(--mono);font-size:10px;font-weight:500;
+  font-family:var(--mono);font-size:10px;font-weight:700;
   letter-spacing:0.18em;text-transform:uppercase;
   color:var(--blue);margin-bottom:14px;
   display:flex;align-items:center;gap:10px;
@@ -220,7 +220,7 @@ nav{
 .cred-item:first-child{padding-top:0}
 .cred-item:last-child{border-bottom:none}
 .cred-num{
-  font-family:var(--mono);font-size:11px;font-weight:500;
+  font-family:var(--mono);font-size:11px;font-weight:700;
   color:var(--blue);letter-spacing:0.1em;padding-top:3px;
 }
 .cred-body{}
@@ -368,7 +368,7 @@ nav{
   background:rgba(0,0,0,0.35);
   border-bottom:0.5px solid rgba(255,255,255,0.06);
 }
-.fsl-ref{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;color:rgba(107,133,255,0.85);text-transform:uppercase}
+.fsl-ref{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.12em;color:rgba(107,133,255,1);text-transform:uppercase}
 .fsl-name{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;color:rgba(255,255,255,0.65);text-transform:uppercase;transition:color 0.4s}
 
 #railingScene{width:100%;display:block;position:relative;z-index:3;overflow:visible}
@@ -448,7 +448,7 @@ nav{
 .docs-note::before,.docs-note::after{content:'';position:absolute;width:10px;height:10px}
 .docs-note::before{top:0;left:0;border-top:1.5px solid var(--blue);border-left:1.5px solid var(--blue)}
 .docs-note::after{bottom:0;right:0;border-bottom:1.5px solid var(--blue);border-right:1.5px solid var(--blue)}
-.docs-note-label{font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(107,133,255,0.8);margin-bottom:12px}
+.docs-note-label{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(107,133,255,1);margin-bottom:12px}
 .docs-note-text{font-size:14px;font-weight:400;color:rgba(255,255,255,0.75);line-height:1.8}
 
 /* compliance tags */
@@ -524,19 +524,26 @@ nav{
 /* ── TESTIMONIALS ── */
 .testimonial-section{
   background:var(--bg);
-  padding:96px 56px;
+  padding:96px 0;
   border-bottom:0.5px solid var(--rule);
+  overflow:hidden;
 }
-.testimonial-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:2px;background:var(--rule);margin-top:56px;
+.testimonial-section .s-eyebrow,.testimonial-section .s-title{padding:0 56px}
+.testimonial-marquee{
+  display:flex;width:max-content;
+  animation:marquee-rtl 40s linear infinite;
+  margin-top:56px;gap:2px;
 }
+.testimonial-marquee:hover{animation-play-state:paused}
+@keyframes marquee-rtl{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
 .testimonial-card{
-  background:var(--bg);
-  padding:40px 32px;
+  background:var(--bg2);
+  border:0.5px solid var(--rule);
+  padding:40px 36px;
+  width:420px;flex-shrink:0;
   position:relative;transition:background 0.3s;
 }
-.testimonial-card:hover{background:var(--bg2)}
+.testimonial-card:hover{background:var(--bg)}
 .t-mark{
   font-family:var(--serif);font-size:56px;font-weight:700;
   color:var(--blue);opacity:0.12;
@@ -569,7 +576,7 @@ nav{
 }
 .trust-item:last-child{border-right:none}
 .trust-number{font-family:var(--serif);font-size:44px;font-weight:700;color:#fff;line-height:1}
-.trust-number span{color:rgba(107,133,255,0.9)}
+.trust-number span{color:rgba(107,133,255,1);font-weight:700}
 .trust-label{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.7);text-align:center}
 
 /* ── CTA — split, architectural ── */
@@ -686,8 +693,9 @@ footer{
   .docs-inner{grid-template-columns:1fr;gap:40px}
   .projects-section{padding:72px 24px}
   .projects-grid{grid-template-columns:1fr}
-  .testimonial-section{padding:72px 24px}
-  .testimonial-grid{grid-template-columns:1fr}
+  .testimonial-section{padding:72px 0}
+  .testimonial-section .s-eyebrow,.testimonial-section .s-title{padding:0 24px}
+  .testimonial-card{width:320px}
   .trust-bar{flex-wrap:wrap;gap:32px;padding:48px 24px}
   .trust-item{border-right:none;padding:0 20px}
   .cta-section{grid-template-columns:1fr}
@@ -721,7 +729,7 @@ footer{
   </div>
   <div class="hero-content">
     <p class="hero-anno">Glass Railing Specialists · Since 2013</p>
-    <h1 class="hero-headline">Engineered<div class="rule-line"></div>For What You Imagine</h1>
+    <h1 class="hero-headline">Engineered<br>For What You Imagine</h1>
     <p class="hero-sub">Frameless glass railing systems designed to work from your drawings — with specification documentation, hardware samples, and dedicated project coordination included.</p>
     <div class="hero-actions">
       <a href="#quote" class="btn-dark">Request Specification Support</a>
@@ -1201,31 +1209,57 @@ footer{
 <section class="testimonial-section">
   <p class="s-eyebrow">What Architects Say</p>
   <h2 class="s-title">From the Firms That Specify Us</h2>
-  <div class="testimonial-grid">
-    <div class="testimonial-card reveal">
+  <div class="testimonial-marquee">
+    <div class="testimonial-card">
       <div class="t-mark">"</div>
       <p class="t-quote">The shop drawings came back exactly to our details — not a standard product with our name on it. That's rare. Most vendors send you what they make; Imperio sent us what we designed.</p>
       <div class="t-author"><div class="t-avatar">AK</div><div><div class="t-name">Principal Architect</div><div class="t-detail">Residential Practice · Mumbai</div></div></div>
     </div>
-    <div class="testimonial-card reveal" style="transition-delay:0.1s">
+    <div class="testimonial-card">
       <div class="t-mark">"</div>
       <p class="t-quote">We specified Imperio on a hospitality project with very specific finish requirements. The brushed gold matched our material palette exactly. Client signed off first review — no revisions.</p>
       <div class="t-author"><div class="t-avatar">SR</div><div><div class="t-name">Interior Design Director</div><div class="t-detail">Hospitality Studio · Bangalore</div></div></div>
     </div>
-    <div class="testimonial-card reveal" style="transition-delay:0.2s">
+    <div class="testimonial-card">
       <div class="t-mark">"</div>
       <p class="t-quote">Having IS compliance documentation ready for the tender package saved us two weeks. Everything was formatted, referenced, and ready to attach. That level of preparation is what makes a vendor a partner.</p>
       <div class="t-author"><div class="t-avatar">PM</div><div><div class="t-name">Project Architect</div><div class="t-detail">Commercial Practice · Pune</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="t-mark">"</div>
+      <p class="t-quote">The coordination on site was seamless. One point of contact, clear timelines, and installation that matched our specification down to every fixing detail. The client noticed — and so did we.</p>
+      <div class="t-author"><div class="t-avatar">RN</div><div><div class="t-name">Senior Associate</div><div class="t-detail">Architecture Firm · Delhi NCR</div></div></div>
+    </div>
+    <!-- Duplicate set for seamless loop -->
+    <div class="testimonial-card">
+      <div class="t-mark">"</div>
+      <p class="t-quote">The shop drawings came back exactly to our details — not a standard product with our name on it. That's rare. Most vendors send you what they make; Imperio sent us what we designed.</p>
+      <div class="t-author"><div class="t-avatar">AK</div><div><div class="t-name">Principal Architect</div><div class="t-detail">Residential Practice · Mumbai</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="t-mark">"</div>
+      <p class="t-quote">We specified Imperio on a hospitality project with very specific finish requirements. The brushed gold matched our material palette exactly. Client signed off first review — no revisions.</p>
+      <div class="t-author"><div class="t-avatar">SR</div><div><div class="t-name">Interior Design Director</div><div class="t-detail">Hospitality Studio · Bangalore</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="t-mark">"</div>
+      <p class="t-quote">Having IS compliance documentation ready for the tender package saved us two weeks. Everything was formatted, referenced, and ready to attach. That level of preparation is what makes a vendor a partner.</p>
+      <div class="t-author"><div class="t-avatar">PM</div><div><div class="t-name">Project Architect</div><div class="t-detail">Commercial Practice · Pune</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="t-mark">"</div>
+      <p class="t-quote">The coordination on site was seamless. One point of contact, clear timelines, and installation that matched our specification down to every fixing detail. The client noticed — and so did we.</p>
+      <div class="t-author"><div class="t-avatar">RN</div><div><div class="t-name">Senior Associate</div><div class="t-detail">Architecture Firm · Delhi NCR</div></div></div>
     </div>
   </div>
 </section>
 
 <!-- TRUST BAR -->
 <div class="trust-bar">
-  <div class="trust-item"><span class="trust-number"><span class="count-up" data-target="500">0</span>+</span><span class="trust-label">Projects Delivered</span></div>
-  <div class="trust-item"><span class="trust-number"><span class="count-up" data-target="4">0</span></span><span class="trust-label">Hardware Finishes</span></div>
-  <div class="trust-item"><span class="trust-number"><span class="count-up" data-target="25">0</span>+</span><span class="trust-label">Cities Pan India</span></div>
-  <div class="trust-item"><span class="trust-number"><span class="count-up" data-target="10">0</span>+</span><span class="trust-label">Years Experience</span></div>
+  <div class="trust-item"><span class="trust-number"><span class="count-up" data-target="100">0</span>+</span><span class="trust-label">Projects Delivered</span></div>
+  <div class="trust-item"><span class="trust-number"><span class="count-up" data-target="5">0</span>+</span><span class="trust-label">Hardware Finishes</span></div>
+  <div class="trust-item"><span class="trust-number"><span class="count-up" data-target="50">0</span>+</span><span class="trust-label">Cities Pan India</span></div>
+  <div class="trust-item"><span class="trust-number"><span class="count-up" data-target="13">0</span></span><span class="trust-label">Years Experience</span></div>
 </div>
 
 <!-- CTA -->
