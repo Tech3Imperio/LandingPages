@@ -18,9 +18,9 @@
   --bg3:      #EEEEEB;
   --bg4:      #E5E5E2;
   --ink:      #111111;
-  --ink2:     #3a3a3a;
-  --ink3:     #6b6b6b;
-  --ink4:     #9a9a9a;
+  --ink2:     #2e2e2e;
+  --ink3:     #444444;
+  --ink4:     #666666;
   --rule:     rgba(0,0,0,0.1);
   --rule-mid: rgba(0,0,0,0.16);
   --blue:     #1724BD;
@@ -123,7 +123,7 @@ nav{
 }
 .hero-sub{
   font-size:15px;font-weight:400;
-  color:rgba(255,255,255,0.62);
+  color:rgba(255,255,255,0.78);
   max-width:480px;line-height:1.88;
   margin-bottom:44px;
   opacity:0;transform:translateY(16px);
@@ -181,18 +181,40 @@ nav{
 }
 .s-sub{font-size:15px;font-weight:400;color:var(--ink3);line-height:1.8;max-width:480px}
 
-/* ── CREDIBILITY — wide layout ── */
+/* ── CREDIBILITY — wide layout with image ── */
 .cred-section{
   background:var(--bg2);
   padding:96px 56px;
   border-bottom:0.5px solid var(--rule);
-  display:grid;grid-template-columns:380px 1fr;gap:80px;align-items:start;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;
+}
+.cred-left{}
+.cred-image{
+  margin-top:40px;
+  position:relative;
+  border:0.5px solid var(--rule-mid);
+  overflow:hidden;
+}
+.cred-image::before,.cred-image::after{
+  content:'';position:absolute;width:12px;height:12px;z-index:2;pointer-events:none;
+}
+.cred-image::before{top:0;left:0;border-top:2px solid var(--blue);border-left:2px solid var(--blue)}
+.cred-image::after{bottom:0;right:0;border-bottom:2px solid var(--blue);border-right:2px solid var(--blue)}
+.cred-image img{width:100%;display:block;filter:brightness(0.97)}
+.cred-image-label{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:10px 14px;
+  background:rgba(8,8,12,0.7);
+  backdrop-filter:blur(8px);
+  font-family:var(--mono);font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;
+  color:rgba(107,133,255,0.9);
+  border-top:0.5px solid rgba(255,255,255,0.08);
 }
 .cred-right{display:flex;flex-direction:column;gap:0}
 .cred-item{
   display:grid;grid-template-columns:48px 1fr;gap:24px;
   padding:32px 0;border-bottom:0.5px solid var(--rule);
-  align-items:start;transition:background 0.2s;
+  align-items:start;
 }
 .cred-item:first-child{padding-top:0}
 .cred-item:last-child{border-bottom:none}
@@ -218,7 +240,7 @@ nav{
 .finish-section .s-eyebrow{color:rgba(107,133,255,0.9)}
 .finish-section .s-eyebrow::before{background:rgba(107,133,255,0.9)}
 .finish-section .s-title{color:#fff}
-.finish-section .s-sub{color:rgba(255,255,255,0.6);margin-top:16px}
+.finish-section .s-sub{color:rgba(255,255,255,0.75);margin-top:16px}
 
 .finish-inner{display:grid;grid-template-columns:1fr 1.45fr;gap:52px;margin-top:64px;align-items:start}
 
@@ -245,8 +267,8 @@ nav{
 .finish-tab.active{background:rgba(255,255,255,0.04)}
 
 .finish-tab-index{
-  font-family:var(--mono);font-size:9px;font-weight:500;
-  color:rgba(255,255,255,0.18);letter-spacing:0.1em;text-align:right;
+  font-family:var(--mono);font-size:10px;font-weight:500;
+  color:rgba(255,255,255,0.42);letter-spacing:0.1em;text-align:right;
   transition:color 0.3s;
 }
 .finish-tab.active .finish-tab-index{color:rgba(107,133,255,0.75)}
@@ -281,16 +303,16 @@ nav{
 }
 .finish-tab.active .finish-tab-name,.finish-tab:hover .finish-tab-name{color:#fff}
 .finish-tab-spec{
-  font-family:var(--mono);font-size:9.5px;color:rgba(255,255,255,0.22);
+  font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.52);
   letter-spacing:0.07em;margin-bottom:8px;
   transition:color 0.3s;
 }
 .finish-tab.active .finish-tab-spec{color:rgba(107,133,255,0.72)}
 .finish-tab-tags{display:flex;gap:5px;flex-wrap:wrap}
 .finish-tab-tag{
-  font-family:var(--mono);font-size:8px;letter-spacing:0.08em;text-transform:uppercase;
-  padding:3px 7px;border:0.5px solid rgba(255,255,255,0.09);
-  color:rgba(255,255,255,0.22);
+  font-family:var(--mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;
+  padding:3px 7px;border:0.5px solid rgba(255,255,255,0.18);
+  color:rgba(255,255,255,0.48);
   transition:border-color 0.3s,color 0.3s;
 }
 .finish-tab.active .finish-tab-tag{
@@ -345,8 +367,8 @@ nav{
   background:rgba(0,0,0,0.35);
   border-bottom:0.5px solid rgba(255,255,255,0.06);
 }
-.fsl-ref{font-family:var(--mono);font-size:9px;letter-spacing:0.12em;color:rgba(107,133,255,0.55);text-transform:uppercase}
-.fsl-name{font-family:var(--mono);font-size:9px;letter-spacing:0.1em;color:rgba(255,255,255,0.38);text-transform:uppercase;transition:color 0.4s}
+.fsl-ref{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;color:rgba(107,133,255,0.85);text-transform:uppercase}
+.fsl-name{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;color:rgba(255,255,255,0.65);text-transform:uppercase;transition:color 0.4s}
 
 #railingScene{width:100%;display:block;position:relative;z-index:3;overflow:visible}
 .hw-main,.hw-sheen{transition:none}
@@ -366,7 +388,7 @@ nav{
   position:relative;z-index:5;
 }
 .fss-item{flex:1;padding:14px 18px;display:flex;flex-direction:column;gap:4px}
-.fss-label{font-family:var(--mono);font-size:8.5px;letter-spacing:0.13em;text-transform:uppercase;color:rgba(255,255,255,0.26)}
+.fss-label{font-family:var(--mono);font-size:10px;letter-spacing:0.13em;text-transform:uppercase;color:rgba(255,255,255,0.55)}
 .fss-val{font-family:var(--mono);font-size:11px;color:#fff;font-weight:500;letter-spacing:0.04em;transition:color 0.4s}
 .fss-divider{width:0.5px;background:rgba(255,255,255,0.06);flex-shrink:0}
 
@@ -406,11 +428,11 @@ nav{
 .doc-card:hover .doc-icon{background:var(--blue-dim)}
 .doc-card:hover .doc-icon svg{stroke:var(--blue)}
 .doc-name{font-family:var(--serif);font-size:14px;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:0.02em;margin-bottom:2px}
-.doc-desc{font-family:var(--mono);font-size:10px;color:var(--ink4);letter-spacing:0.06em}
+.doc-desc{font-family:var(--mono);font-size:11.5px;color:var(--ink3);letter-spacing:0.04em}
 .doc-action{
-  font-family:var(--mono);font-size:10px;font-weight:500;
+  font-family:var(--mono);font-size:10.5px;font-weight:500;
   letter-spacing:0.1em;text-transform:uppercase;
-  color:var(--ink4);white-space:nowrap;
+  color:var(--ink3);white-space:nowrap;
   transition:color 0.2s;
 }
 .doc-card:hover .doc-action{color:var(--blue)}
@@ -494,7 +516,7 @@ nav{
   background:rgba(0,0,0,0.5);
   backdrop-filter:blur(4px);
 }
-.pcl-type{font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5)}
+.pcl-type{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.72)}
 .pcl-arrow{color:rgba(255,255,255,0.3);font-size:12px;transition:color 0.2s}
 .project-card:hover .pcl-arrow{color:#fff}
 
@@ -547,7 +569,7 @@ nav{
 .trust-item:last-child{border-right:none}
 .trust-number{font-family:var(--serif);font-size:44px;font-weight:700;color:#fff;line-height:1}
 .trust-number span{color:rgba(107,133,255,0.9)}
-.trust-label{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.45);text-align:center}
+.trust-label{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.7);text-align:center}
 
 /* ── CTA — split, architectural ── */
 .cta-section{
@@ -569,9 +591,9 @@ nav{
 .cta-left .s-eyebrow{color:rgba(107,133,255,0.9)}
 .cta-left .s-eyebrow::before{background:rgba(107,133,255,0.9)}
 .cta-left .s-title{color:#fff}
-.cta-sub-text{font-size:15px;font-weight:400;color:rgba(255,255,255,0.6);line-height:1.85;margin-top:20px;max-width:380px}
+.cta-sub-text{font-size:15px;font-weight:400;color:rgba(255,255,255,0.78);line-height:1.85;margin-top:20px;max-width:380px}
 .cta-checklist{display:flex;flex-direction:column;gap:14px;margin-top:36px}
-.cta-check-item{display:flex;align-items:center;gap:14px;font-size:14px;font-weight:400;color:rgba(255,255,255,0.7)}
+.cta-check-item{display:flex;align-items:center;gap:14px;font-size:14px;font-weight:400;color:rgba(255,255,255,0.85)}
 .cta-check-mark{
   width:20px;height:20px;border-radius:50%;
   border:0.5px solid rgba(107,133,255,0.5);
@@ -632,9 +654,9 @@ footer{
   display:flex;align-items:center;justify-content:space-between;
 }
 .footer-links{display:flex;gap:28px;list-style:none}
-.footer-links a{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s}
-.footer-links a:hover{color:rgba(107,133,255,0.9)}
-.footer-copy{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.25);letter-spacing:0.04em}
+.footer-links a{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.62);text-decoration:none;transition:color 0.2s}
+.footer-links a:hover{color:rgba(107,133,255,1)}
+.footer-copy{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:0.04em}
 
 /* ── WA ── */
 .wa-bubble{position:fixed;bottom:28px;right:28px;z-index:200;width:52px;height:52px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform 0.2s;box-shadow:0 4px 16px rgba(37,211,102,0.25)}
@@ -654,7 +676,7 @@ footer{
   nav{padding:0 24px}
   .nav-links{display:none}
   .hero-content{padding:0 24px 64px}
-  .cred-section{grid-template-columns:1fr;padding:72px 24px;gap:48px}
+  .cred-section{grid-template-columns:1fr;padding:72px 24px;gap:56px}
   .finish-inner{grid-template-columns:1fr;gap:32px}
   .finish-section{padding:72px 24px}
   .finish-tab{grid-template-columns:24px 44px 1fr 20px;gap:12px;padding:16px 12px 16px 0}
@@ -681,13 +703,13 @@ footer{
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">
-    <img src="logowhite.PNG" class="logo-img logo-img--nav" alt="Imperio">
+    <img src="logo.PNG" class="logo-img logo-img--nav" alt="Imperio">
   </a>
   <ul class="nav-links">
     <li><a href="#finishes">Finishes</a></li>
     <li><a href="#docs">Documentation</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#quote" class="nav-cta">Request Spec Pack</a></li>
+    <li><a href="#quote" class="nav-cta">Request Specification Support</a></li>
   </ul>
 </nav>
 
@@ -701,7 +723,7 @@ footer{
     <h1 class="hero-headline">Engineered<div class="rule-line"></div>For What You Imagine</h1>
     <p class="hero-sub">Frameless glass railing systems designed to work from your drawings — with specification documentation, hardware samples, and dedicated project coordination included.</p>
     <div class="hero-actions">
-      <a href="#quote" class="btn-dark">Request Spec Pack + Drawings</a>
+      <a href="#quote" class="btn-dark">Request Specification Support</a>
     </div>
   </div>
   <div class="hero-scroll-wrap">
@@ -732,10 +754,14 @@ footer{
 
 <!-- CREDIBILITY -->
 <section class="cred-section">
-  <div>
+  <div class="cred-left">
     <p class="s-eyebrow">Why Architects Specify Imperio</p>
     <h2 class="s-title">Specify With Confidence</h2>
     <p class="s-sub" style="margin-top:16px">We work from your drawings — not around them. Everything you need to spec, coordinate, and deliver is prepared before you ask.</p>
+    <div class="cred-image reveal" style="transition-delay:0.15s">
+      <img src="spec.PNG" alt="Imperio specification drawing sample">
+      <div class="cred-image-label">// Sample specification drawing — IMP-DWG-2026</div>
+    </div>
   </div>
   <div class="cred-right">
     <div class="cred-item reveal">
@@ -1202,7 +1228,7 @@ footer{
 <!-- CTA -->
 <section class="cta-section" id="quote">
   <div class="cta-left">
-    <p class="s-eyebrow">Request Spec Pack</p>
+    <p class="s-eyebrow">Request Specification Support</p>
     <h2 class="s-title">Ready to Specify?</h2>
     <p class="cta-sub-text">Share your project brief. We'll prepare a specification pack — drawings, compliance documentation, and hardware samples — specific to your project.</p>
     <div class="cta-checklist">
@@ -1214,7 +1240,7 @@ footer{
   </div>
   <div class="cta-right">
     <div id="formWrap">
-      <h3 class="form-title">Request Spec Pack</h3>
+      <h3 class="form-title">Request Specification Support</h3>
       <p class="form-sub">// Response within 24 hours</p>
       <div class="form-row-2">
         <div class="form-group half"><label for="fname">Your Name</label><input type="text" id="fname" placeholder="Ananya Kumar"></div>
@@ -1228,14 +1254,14 @@ footer{
         <select id="ftype"><option value="" disabled selected>Select project type</option><option>Residential Interior</option><option>Commercial / Office</option><option>Hospitality</option><option>Mixed-Use</option></select>
       </div>
       <div class="form-group"><label for="fnotes">Brief / Special Requirements</label><textarea id="fnotes" placeholder="Glass thickness, finish preference, system height, any specific requirements..."></textarea></div>
-      <button class="form-submit" onclick="submitForm()">Request Spec Pack + Drawings →</button>
+      <button class="form-submit" onclick="submitForm()">Request Specification Support →</button>
       <a href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20I%27m%20an%20architect%20looking%20for%20specification%20support%20for%20a%20project." class="form-wa" target="_blank"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp for urgent queries</a>
-      <p class="form-note">// No spam · Spec pack delivered within 24 hours</p>
+      <p class="form-note">// No spam · Response within 24 hours</p>
     </div>
     <div class="form-success" id="formSuccess">
       <div class="success-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 10l4.5 4.5 9-9" stroke="var(--blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <h3 class="success-title">Received.</h3>
-      <p class="success-sub">Your spec pack will be with you within 24 hours. Your project coordinator will reach out directly.</p>
+      <p class="success-sub">We'll be in touch within 24 hours. Your project coordinator will reach out directly.</p>
     </div>
   </div>
 </section>
@@ -1243,7 +1269,7 @@ footer{
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">
-    <img src="logowhite.PNG" class="logo-img logo-img--footer" alt="Imperio">
+    <img src="logo.PNG" class="logo-img logo-img--footer" alt="Imperio">
   </div>
   <ul class="footer-links">
     <li><a href="#">Products</a></li><li><a href="#">Projects</a></li>
