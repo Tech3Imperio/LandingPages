@@ -132,46 +132,94 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);display:
 .track-right{display:flex;align-items:center;justify-content:center;background:var(--bg3);position:relative;overflow:hidden;padding:48px}
 .track-right::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(23,36,189,0.12) 0%,transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
 
-/* multi-unit dashboard */
-.dashboard{width:100%;max-width:480px;background:var(--bg2);border:0.5px solid var(--border-hi);border-radius:4px;overflow:hidden;opacity:0;transform:translateY(40px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1)}
+/* ── DASHBOARD ── */
+.dashboard{width:100%;max-width:540px;background:#0d0d0d;border:0.5px solid var(--border-hi);border-radius:3px;overflow:hidden;opacity:0;transform:translateY(40px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1);font-family:var(--sans)}
 .dashboard.dash-visible{opacity:1;transform:translateY(0)}
 
-.dash-topbar{background:var(--blue);padding:16px 20px;display:flex;align-items:center;justify-content:space-between}
-.dash-project-name{font-family:var(--serif);font-size:14px;font-weight:700;color:#fff;letter-spacing:0.02em}
-.dash-project-sub{font-family:var(--serif);font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-top:2px}
-.dash-live{display:flex;align-items:center;gap:6px;font-family:var(--serif);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fff}
-.dash-live-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;animation:livePulse 1.6s ease-in-out infinite}
-@keyframes livePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.4)}}
+/* topbar */
+.dash-topbar{background:var(--blue);padding:10px 16px;display:flex;align-items:center;justify-content:space-between}
+.dash-project-name{font-family:var(--serif);font-size:12px;font-weight:700;color:#fff;letter-spacing:0.02em}
+.dash-project-sub{font-family:var(--serif);font-size:9px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-top:1px}
+.dash-live{display:flex;align-items:center;gap:5px;font-family:var(--serif);font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fff}
+.dash-live-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;animation:livePulse 1.6s ease-in-out infinite;flex-shrink:0}
+@keyframes livePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(1.5)}}
 
-.dash-summary{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:0.5px solid var(--border)}
-.dash-sum-item{padding:14px 16px;border-right:0.5px solid var(--border)}
-.dash-sum-item:last-child{border-right:none}
-.dash-sum-val{font-family:var(--serif);font-size:20px;font-weight:700;color:#fff;line-height:1}
-.dash-sum-label{font-family:var(--serif);font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--t3);margin-top:3px}
+/* tab bar */
+.dash-tabs{display:flex;border-bottom:0.5px solid var(--border);background:#111}
+.dash-tab{padding:8px 16px;font-family:var(--serif);font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--t3);cursor:default;border-right:0.5px solid var(--border);transition:color 0.2s;position:relative}
+.dash-tab.active{color:#fff;background:rgba(255,255,255,0.03)}
+.dash-tab.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1.5px;background:var(--blue)}
+.dash-tab-spacer{flex:1}
 
-.dash-table-head{display:grid;grid-template-columns:80px 1fr 100px 80px;gap:0;padding:10px 16px;border-bottom:0.5px solid var(--border)}
-.dash-th{font-family:var(--serif);font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--t3)}
+/* kpi strip */
+.dash-kpi{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:0.5px solid var(--border)}
+.dash-kpi-item{padding:10px 14px;border-right:0.5px solid var(--border);position:relative;overflow:hidden}
+.dash-kpi-item:last-child{border-right:none}
+.dash-kpi-val{font-family:var(--serif);font-size:22px;font-weight:700;color:#fff;line-height:1}
+.dash-kpi-label{font-family:var(--serif);font-size:8px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--t3);margin-top:2px}
+.dash-kpi-bar{height:2px;background:var(--border);margin-top:8px;border-radius:0;overflow:hidden}
+.dash-kpi-fill{height:100%;width:0;border-radius:0;transition:width 1.2s cubic-bezier(0.16,1,0.3,1)}
+.dash-kpi-fill--done{background:#4ade80}
+.dash-kpi-fill--prod{background:var(--blue-label)}
+.dash-kpi-fill--disp{background:#f59e0b}
+.dash-kpi-fill--pend{background:var(--border-hi)}
 
+/* filter row */
+.dash-filter{display:flex;align-items:center;gap:6px;padding:8px 14px;border-bottom:0.5px solid var(--border);background:#111}
+.dash-filter-label{font-family:var(--serif);font-size:8px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--t3);margin-right:2px}
+.dash-pill{font-family:var(--serif);font-size:8px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 8px;border:0.5px solid var(--border);border-radius:1px;color:var(--t3);cursor:default;transition:all 0.15s}
+.dash-pill.active{background:var(--blue);border-color:var(--blue);color:#fff}
+.dash-filter-spacer{flex:1}
+.dash-search{font-family:var(--serif);font-size:8px;color:var(--t3);letter-spacing:0.06em;display:flex;align-items:center;gap:4px}
+
+/* table */
+.dash-table-head{display:grid;grid-template-columns:52px 90px 1fr 90px 52px;padding:6px 14px;border-bottom:0.5px solid var(--border);background:#0a0a0a}
+.dash-th{font-family:var(--serif);font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--t3)}
 .dash-rows{display:flex;flex-direction:column}
-.dash-row{display:grid;grid-template-columns:80px 1fr 100px 80px;align-items:center;padding:12px 16px;border-bottom:0.5px solid var(--border);transition:background 0.2s;cursor:default}
-.dash-row:last-child{border-bottom:none}
-.dash-row:hover{background:rgba(255,255,255,0.03)}
-.dash-row.dash-row--active{background:rgba(23,36,189,0.08)}
-.dr-unit{font-family:var(--serif);font-size:12px;font-weight:700;color:#fff;letter-spacing:0.04em}
-.dr-type{font-family:var(--sans);font-size:12px;color:var(--t2)}
-.dr-stage{display:inline-flex;align-items:center;gap:5px;font-family:var(--serif);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase}
-.dr-stage-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.stage-done .dr-stage-dot{background:#4ade80}
-.stage-done .dr-stage{color:#4ade80}
-.stage-active .dr-stage-dot{background:var(--blue-label);animation:livePulse 1.6s infinite}
-.stage-active .dr-stage{color:var(--blue-label)}
-.stage-pending .dr-stage-dot{background:var(--t3)}
-.stage-pending .dr-stage{color:var(--t3)}
-.dr-eta{font-family:var(--serif);font-size:11px;font-weight:600;color:var(--t2)}
+.dash-row{display:grid;grid-template-columns:52px 90px 1fr 90px 52px;align-items:center;padding:7px 14px;border-bottom:0.5px solid rgba(255,255,255,0.04);transition:background 0.18s;cursor:default;opacity:0;transform:translateX(-8px);transition:background 0.18s,opacity 0.4s,transform 0.4s}
+.dash-row.dr-in{opacity:1;transform:translateX(0)}
+.dash-row:hover{background:rgba(255,255,255,0.025)}
+.dash-row--active{background:rgba(23,36,189,0.1)!important;border-left:2px solid var(--blue)}
+.dr-unit{font-family:var(--serif);font-size:11px;font-weight:700;color:#fff;letter-spacing:0.05em}
+.dr-floor{font-family:var(--serif);font-size:10px;color:var(--t3);letter-spacing:0.04em}
+.dr-type{font-size:11px;color:var(--t2)}
+.dr-badge{display:inline-flex;align-items:center;gap:4px;font-family:var(--serif);font-size:8px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 7px;border-radius:1px}
+.dr-badge-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.badge-done{background:rgba(74,222,128,0.1);color:#4ade80;border:0.5px solid rgba(74,222,128,0.25)}
+.badge-done .dr-badge-dot{background:#4ade80}
+.badge-active{background:rgba(107,133,255,0.12);color:var(--blue-label);border:0.5px solid rgba(107,133,255,0.3)}
+.badge-active .dr-badge-dot{background:var(--blue-label);animation:livePulse 1.4s infinite}
+.badge-dispatch{background:rgba(245,158,11,0.1);color:#f59e0b;border:0.5px solid rgba(245,158,11,0.25)}
+.badge-dispatch .dr-badge-dot{background:#f59e0b}
+.badge-pending{background:rgba(255,255,255,0.04);color:var(--t3);border:0.5px solid var(--border)}
+.badge-pending .dr-badge-dot{background:var(--t3)}
+.dr-prog{width:100%;display:flex;flex-direction:column;gap:3px}
+.dr-prog-bar{height:3px;background:rgba(255,255,255,0.06);border-radius:0;overflow:hidden}
+.dr-prog-fill{height:100%;width:0;border-radius:0;transition:width 1s cubic-bezier(0.16,1,0.3,1)}
+.fill-done{background:#4ade80}
+.fill-active{background:var(--blue-label)}
+.fill-dispatch{background:#f59e0b}
+.fill-pending{background:rgba(255,255,255,0.15)}
+.dr-prog-pct{font-family:var(--serif);font-size:8px;font-weight:700;color:var(--t3);letter-spacing:0.04em}
+.dr-eta{font-family:var(--serif);font-size:9px;font-weight:600;color:var(--t2);text-align:right}
 
-.dash-footer{padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border-top:0.5px solid var(--border)}
-.dash-footer-note{font-family:var(--serif);font-size:10px;color:var(--t3);letter-spacing:0.06em}
-.dash-footer-action{font-family:var(--serif);font-size:10px;font-weight:700;color:var(--blue-label);letter-spacing:0.08em;text-transform:uppercase;cursor:pointer}
+/* activity feed */
+.dash-feed{border-top:0.5px solid var(--border);background:#0a0a0a;overflow:hidden;height:52px;position:relative}
+.dash-feed-label{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:8px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--t3);z-index:2;background:#0a0a0a;padding-right:6px}
+.dash-feed-track{display:flex;flex-direction:column;position:absolute;left:76px;right:0;top:0;animation:feedScroll 8s linear infinite}
+.dash-feed-item{height:52px;display:flex;align-items:center;gap:8px;padding:0 14px 0 0;white-space:nowrap}
+.feed-unit{font-family:var(--serif);font-size:9px;font-weight:700;color:#fff;letter-spacing:0.05em}
+.feed-event{font-size:9px;color:var(--t2)}
+.feed-time{font-family:var(--serif);font-size:8px;color:var(--t3);margin-left:auto}
+.feed-dot{width:4px;height:4px;border-radius:50%;flex-shrink:0}
+@keyframes feedScroll{0%{transform:translateY(0)}100%{transform:translateY(-260px)}}
+
+/* footer */
+.dash-footer{padding:8px 14px;display:flex;align-items:center;justify-content:space-between;border-top:0.5px solid var(--border);background:#111}
+.dash-footer-note{font-family:var(--serif);font-size:8px;color:var(--t3);letter-spacing:0.06em}
+.dash-footer-sync{font-family:var(--serif);font-size:8px;color:var(--t3);letter-spacing:0.04em;display:flex;align-items:center;gap:4px}
+.dash-footer-sync::before{content:'';width:5px;height:5px;border-radius:50%;background:#4ade80;animation:livePulse 2s infinite}
+.dash-footer-action{font-family:var(--serif);font-size:8px;font-weight:700;color:var(--blue-label);letter-spacing:0.08em;text-transform:uppercase;cursor:pointer}
 
 /* ── GANTT TIMELINE ── */
 .gantt-section{background:var(--bg);padding:100px 64px;border-bottom:0.5px solid var(--border)}
@@ -413,7 +461,7 @@ footer{background:var(--bg2);border-top:0.5px solid var(--border);padding:44px 6
     <!-- Card 1: LED Glass Railings -->
     <div class="adv-card reveal">
       <div class="adv-bar"></div>
-      <div class="adv-img-wrap" style="background-image:url('led.jpeg');background-position:center 65%" aria-label="Signature LED glass railings"></div>
+      <div class="adv-img-wrap" style="background-image:url('led.jpeg');background-position:center 82%" aria-label="Signature LED glass railings"></div>
       <div class="adv-card-body">
         <h3 class="adv-title">Signature LED Glass Railings.</h3>
         <p class="adv-body">Secure an immediate competitive edge with first-in-segment integrated LED railings.</p>
@@ -490,6 +538,8 @@ footer{background:var(--bg2);border-top:0.5px solid var(--border);padding:44px 6
   </div>
   <div class="track-right">
     <div class="dashboard" id="dashboard">
+
+      <!-- Top bar -->
       <div class="dash-topbar">
         <div>
           <div class="dash-project-name">Greenfield Residences — Tower B</div>
@@ -497,30 +547,109 @@ footer{background:var(--bg2);border-top:0.5px solid var(--border);padding:44px 6
         </div>
         <div class="dash-live"><div class="dash-live-dot"></div>Live</div>
       </div>
-      <div class="dash-summary">
-        <div class="dash-sum-item"><div class="dash-sum-val" id="doneCount">0</div><div class="dash-sum-label">Completed</div></div>
-        <div class="dash-sum-item"><div class="dash-sum-val" id="prodCount">0</div><div class="dash-sum-label">In Production</div></div>
-        <div class="dash-sum-item"><div class="dash-sum-val" id="dispCount">0</div><div class="dash-sum-label">Dispatched</div></div>
-        <div class="dash-sum-item"><div class="dash-sum-val" id="pendCount">0</div><div class="dash-sum-label">Pending</div></div>
+
+      <!-- Tab bar -->
+      <div class="dash-tabs">
+        <div class="dash-tab active">Overview</div>
+        <div class="dash-tab">Units</div>
+        <div class="dash-tab">Schedule</div>
+        <div class="dash-tab-spacer"></div>
       </div>
+
+      <!-- KPI strip -->
+      <div class="dash-kpi">
+        <div class="dash-kpi-item">
+          <div class="dash-kpi-val" id="doneCount">0</div>
+          <div class="dash-kpi-label">Installed</div>
+          <div class="dash-kpi-bar"><div class="dash-kpi-fill dash-kpi-fill--done" id="doneFill"></div></div>
+        </div>
+        <div class="dash-kpi-item">
+          <div class="dash-kpi-val" id="prodCount">0</div>
+          <div class="dash-kpi-label">Production</div>
+          <div class="dash-kpi-bar"><div class="dash-kpi-fill dash-kpi-fill--prod" id="prodFill"></div></div>
+        </div>
+        <div class="dash-kpi-item">
+          <div class="dash-kpi-val" id="dispCount">0</div>
+          <div class="dash-kpi-label">Dispatched</div>
+          <div class="dash-kpi-bar"><div class="dash-kpi-fill dash-kpi-fill--disp" id="dispFill"></div></div>
+        </div>
+        <div class="dash-kpi-item">
+          <div class="dash-kpi-val" id="pendCount">0</div>
+          <div class="dash-kpi-label">Scheduled</div>
+          <div class="dash-kpi-bar"><div class="dash-kpi-fill dash-kpi-fill--pend" id="pendFill"></div></div>
+        </div>
+      </div>
+
+      <!-- Filter row -->
+      <div class="dash-filter">
+        <span class="dash-filter-label">Floor</span>
+        <span class="dash-pill active">All</span>
+        <span class="dash-pill">F1</span>
+        <span class="dash-pill">F2</span>
+        <span class="dash-pill">F3</span>
+        <div class="dash-filter-spacer"></div>
+        <div class="dash-search">⌕ Search unit</div>
+      </div>
+
+      <!-- Table head -->
       <div class="dash-table-head">
         <div class="dash-th">Unit</div>
+        <div class="dash-th">Floor</div>
         <div class="dash-th">Type</div>
-        <div class="dash-th">Stage</div>
+        <div class="dash-th">Status</div>
         <div class="dash-th">ETA</div>
       </div>
+
+      <!-- Rows -->
       <div class="dash-rows" id="dashRows">
-        <div class="dash-row stage-done"><div class="dr-unit">B-101</div><div class="dr-type">Balcony · 2-panel</div><div class="dr-stage"><span class="dr-stage-dot"></span>Installed</div><div class="dr-eta">Done</div></div>
-        <div class="dash-row stage-done"><div class="dr-unit">B-102</div><div class="dr-type">Balcony + Staircase</div><div class="dr-stage"><span class="dr-stage-dot"></span>Installed</div><div class="dr-eta">Done</div></div>
-        <div class="dash-row dash-row--active stage-active"><div class="dr-unit">B-201</div><div class="dr-type">Balcony · 3-panel</div><div class="dr-stage"><span class="dr-stage-dot"></span>Production</div><div class="dr-eta">Jun 18</div></div>
-        <div class="dash-row stage-active"><div class="dr-unit">B-202</div><div class="dr-type">Staircase</div><div class="dr-stage"><span class="dr-stage-dot"></span>Production</div><div class="dr-eta">Jun 20</div></div>
-        <div class="dash-row stage-pending"><div class="dr-unit">B-301</div><div class="dr-type">Balcony · 2-panel</div><div class="dr-stage"><span class="dr-stage-dot"></span>Scheduled</div><div class="dr-eta">Jun 28</div></div>
-        <div class="dash-row stage-pending"><div class="dr-unit">B-302</div><div class="dr-type">Balcony + Staircase</div><div class="dr-stage"><span class="dr-stage-dot"></span>Scheduled</div><div class="dr-eta">Jul 2</div></div>
+        <div class="dash-row">
+          <div class="dr-unit">B-101</div><div class="dr-floor">F 01</div><div class="dr-type">Balcony 2P</div>
+          <div><span class="dr-badge badge-done"><span class="dr-badge-dot"></span>Installed</span></div>
+          <div class="dr-eta">Done</div>
+        </div>
+        <div class="dash-row">
+          <div class="dr-unit">B-102</div><div class="dr-floor">F 01</div><div class="dr-type">Staircase</div>
+          <div><span class="dr-badge badge-done"><span class="dr-badge-dot"></span>Installed</span></div>
+          <div class="dr-eta">Done</div>
+        </div>
+        <div class="dash-row dash-row--active">
+          <div class="dr-unit">B-201</div><div class="dr-floor">F 02</div><div class="dr-type">Balcony 3P</div>
+          <div><span class="dr-badge badge-active"><span class="dr-badge-dot"></span>Production</span></div>
+          <div class="dr-eta">Jun 18</div>
+        </div>
+        <div class="dash-row">
+          <div class="dr-unit">B-202</div><div class="dr-floor">F 02</div><div class="dr-type">Staircase</div>
+          <div><span class="dr-badge badge-dispatch"><span class="dr-badge-dot"></span>Dispatch</span></div>
+          <div class="dr-eta">Jun 21</div>
+        </div>
+        <div class="dash-row">
+          <div class="dr-unit">B-301</div><div class="dr-floor">F 03</div><div class="dr-type">Balcony 2P</div>
+          <div><span class="dr-badge badge-pending"><span class="dr-badge-dot"></span>Scheduled</span></div>
+          <div class="dr-eta">Jun 28</div>
+        </div>
       </div>
+
+      <!-- Activity feed -->
+      <div class="dash-feed">
+        <span class="dash-feed-label">Activity</span>
+        <div class="dash-feed-track">
+          <div class="dash-feed-item"><span class="feed-dot" style="background:#4ade80"></span><span class="feed-unit">B-102</span><span class="feed-event">marked installed by site team</span><span class="feed-time">2m ago</span></div>
+          <div class="dash-feed-item"><span class="feed-dot" style="background:#f59e0b"></span><span class="feed-unit">B-202</span><span class="feed-event">dispatched from factory</span><span class="feed-time">18m ago</span></div>
+          <div class="dash-feed-item"><span class="feed-dot" style="background:var(--blue-label)"></span><span class="feed-unit">B-201</span><span class="feed-event">entered production queue</span><span class="feed-time">1h ago</span></div>
+          <div class="dash-feed-item"><span class="feed-dot" style="background:var(--t3)"></span><span class="feed-unit">B-301</span><span class="feed-event">scheduled — ETA confirmed</span><span class="feed-time">3h ago</span></div>
+          <div class="dash-feed-item"><span class="feed-dot" style="background:#4ade80"></span><span class="feed-unit">B-101</span><span class="feed-event">snagging cleared · signed off</span><span class="feed-time">6h ago</span></div>
+          <!-- repeat for seamless loop -->
+          <div class="dash-feed-item"><span class="feed-dot" style="background:#4ade80"></span><span class="feed-unit">B-102</span><span class="feed-event">marked installed by site team</span><span class="feed-time">2m ago</span></div>
+        </div>
+      </div>
+
+      <!-- Footer -->
       <div class="dash-footer">
-        <div class="dash-footer-note">Showing 6 of 120 units</div>
-        <div class="dash-footer-action">View All Units →</div>
+        <div class="dash-footer-note">Showing 5 of 120 units</div>
+        <div class="dash-footer-sync">Synced just now</div>
+        <div class="dash-footer-action">View All →</div>
       </div>
+
     </div>
   </div>
 </div>
@@ -790,7 +919,7 @@ const countObs=new IntersectionObserver(entries=>{
 },{threshold:0.5});
 counters.forEach(el=>countObs.observe(el));
 
-// Dashboard summary count-up animation
+// Dashboard animation
 const dash=document.getElementById('dashboard');
 let dashAnimated=false;
 const dashObs=new IntersectionObserver(entries=>{
@@ -799,34 +928,41 @@ const dashObs=new IntersectionObserver(entries=>{
       dashAnimated=true;
       setTimeout(()=>{
         dash.classList.add('dash-visible');
-        setTimeout(()=>{
-          animateCount('doneCount',42,800);
-          animateCount('prodCount',18,900);
-          animateCount('dispCount',28,1000);
-          animateCount('pendCount',32,1100);
-        },400);
+        // stagger rows in
+        const drows=dash.querySelectorAll('.dash-row');
+        drows.forEach((r,i)=>setTimeout(()=>r.classList.add('dr-in'),500+i*100));
+        // kpi count-up + fill bars
+        const kpis=[
+          {id:'doneCount',fill:'doneFill',val:42,pct:'35%',delay:600},
+          {id:'prodCount',fill:'prodFill',val:18,pct:'15%',delay:700},
+          {id:'dispCount',fill:'dispFill',val:28,pct:'23%',delay:800},
+          {id:'pendCount',fill:'pendFill',val:32,pct:'27%',delay:900}
+        ];
+        kpis.forEach(k=>{
+          setTimeout(()=>{
+            // count up
+            const el=document.getElementById(k.id);
+            let c=0;const step=k.val/40;
+            const t=setInterval(()=>{c=Math.min(c+step,k.val);el.textContent=Math.floor(c);if(c>=k.val)clearInterval(t)},22);
+            // fill bar
+            const fill=document.getElementById(k.fill);
+            if(fill)fill.style.width=k.pct;
+          },k.delay);
+        });
       },200);
     }
   });
 },{threshold:0.3});
 dashObs.observe(dash);
 
-function animateCount(id,target,delay){
-  setTimeout(()=>{
-    const el=document.getElementById(id);
-    let c=0;const step=target/40;
-    const t=setInterval(()=>{c=Math.min(c+step,target);el.textContent=Math.floor(c);if(c>=target)clearInterval(t)},22);
-  },delay);
-}
-
-// Cycle active row in dashboard
-const rows=document.querySelectorAll('.dash-row');
-let activeRow=2;
+// Cycle highlight across rows
+const dashRows=document.querySelectorAll('#dashRows .dash-row');
+let activeRowIdx=2;
 setInterval(()=>{
-  rows.forEach(r=>r.classList.remove('dash-row--active'));
-  activeRow=(activeRow+1)%rows.length;
-  rows[activeRow].classList.add('dash-row--active');
-},2000);
+  dashRows.forEach(r=>r.classList.remove('dash-row--active'));
+  activeRowIdx=(activeRowIdx+1)%dashRows.length;
+  dashRows[activeRowIdx].classList.add('dash-row--active');
+},2400);
 
 // Gantt animation
 const ganttWrap=document.getElementById('ganttWrap');
