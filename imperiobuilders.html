@@ -275,19 +275,26 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);display:
 .gallery-item:hover .gallery-overlay{opacity:1}
 .gallery-tag{font-family:var(--serif);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#fff;font-weight:700;border-left:2px solid var(--blue);padding-left:10px}
 
-/* ── TESTIMONIALS ── */
-.testimonial-section{background:var(--bg);padding:100px 64px;border-bottom:0.5px solid var(--border)}
-.testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:64px}
-.testimonial-card{background:var(--bg);padding:44px 36px;position:relative;transition:background 0.3s}
-.testimonial-card:hover{background:var(--bg2)}
-.testimonial-card::before{content:'\201C';font-family:var(--serif);font-size:80px;font-weight:700;color:var(--blue);opacity:0.15;position:absolute;top:12px;left:22px;line-height:1}
-.stars{display:flex;gap:3px;margin-bottom:20px}
-.star{width:11px;height:11px;background:var(--blue);clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
-.testimonial-quote{font-size:15px;font-weight:400;font-style:italic;color:rgba(255,255,255,0.88);line-height:1.75;margin-bottom:28px}
-.testimonial-author{display:flex;align-items:center;gap:14px}
-.author-avatar{width:42px;height:42px;border-radius:50%;background:var(--blue-dim);border:0.5px solid rgba(107,133,255,0.4);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:12px;font-weight:700;color:var(--blue-label);flex-shrink:0}
-.author-name{font-family:var(--serif);font-size:13px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:0.04em}
-.author-detail{font-size:13px;color:rgba(255,255,255,0.55);margin-top:2px}
+/* ── TESTIMONIALS MARQUEE ── */
+.testimonial-section{background:var(--bg);padding:100px 0;border-bottom:0.5px solid var(--border);overflow:hidden}
+.testimonial-header{padding:0 64px;margin-bottom:56px}
+.testimonial-marquee-wrap{overflow:hidden;position:relative}
+.testimonial-marquee-wrap::before,.testimonial-marquee-wrap::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
+.testimonial-marquee-wrap::before{left:0;background:linear-gradient(to right,var(--bg),transparent)}
+.testimonial-marquee-wrap::after{right:0;background:linear-gradient(to left,var(--bg),transparent)}
+.testimonial-track{display:flex;width:max-content;animation:tmqScroll 38s linear infinite}
+.testimonial-track:hover{animation-play-state:paused}
+@keyframes tmqScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.testimonial-card{background:var(--bg2);border:0.5px solid var(--border);padding:36px 36px 32px;width:360px;flex-shrink:0;margin-right:1px;position:relative;transition:border-color 0.3s,background 0.3s}
+.testimonial-card:hover{background:var(--bg3);border-color:var(--border-mid)}
+.testimonial-card::before{content:'\201C';font-family:var(--serif);font-size:72px;font-weight:700;color:var(--blue);opacity:0.12;position:absolute;top:8px;left:18px;line-height:1;pointer-events:none}
+.stars{display:flex;gap:3px;margin-bottom:18px}
+.star{width:10px;height:10px;background:var(--blue);clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.testimonial-quote{font-size:14px;font-weight:400;font-style:italic;color:rgba(255,255,255,0.85);line-height:1.8;margin-bottom:24px}
+.testimonial-author{display:flex;align-items:center;gap:12px}
+.author-avatar{width:38px;height:38px;border-radius:50%;background:var(--blue-dim);border:0.5px solid rgba(107,133,255,0.4);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:11px;font-weight:700;color:var(--blue-label);flex-shrink:0}
+.author-name{font-family:var(--serif);font-size:12px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:0.04em}
+.author-detail{font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px}
 
 /* ── TRUST BAR ── */
 .trust-bar{background:var(--blue);padding:56px 64px;display:flex;align-items:center;justify-content:center}
@@ -377,8 +384,7 @@ footer{background:var(--bg2);border-top:0.5px solid var(--border);padding:44px 6
   .gallery-header{padding:0 24px;flex-direction:column;align-items:flex-start;gap:20px}
   .gallery-grid{grid-template-columns:1fr 1fr;grid-auto-rows:200px}
   .gallery-item:nth-child(2){grid-row:auto}
-  .testimonial-grid{grid-template-columns:1fr}
-  .trust-bar{flex-wrap:wrap;gap:32px;padding:48px 24px}
+.trust-bar{flex-wrap:wrap;gap:32px;padding:48px 24px}
   .trust-item{border-right:none;padding:0 24px}
   .faq-section{grid-template-columns:1fr;gap:48px}
   .cta-section{grid-template-columns:1fr;gap:48px}
@@ -784,25 +790,69 @@ footer{background:var(--bg2);border-top:0.5px solid var(--border);padding:44px 6
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
+<!-- TESTIMONIALS MARQUEE -->
 <section class="testimonial-section">
-  <p class="section-eyebrow">What Builders Say</p>
-  <h2 class="section-title">Trusted by Developers Across India</h2>
-  <div class="testimonial-grid">
-    <div class="testimonial-card reveal">
-      <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
-      <p class="testimonial-quote">"We were running 3 towers simultaneously. Having one account manager across all of them — and a live dashboard — meant our site supervisors always knew what was coming and when."</p>
-      <div class="testimonial-author"><div class="author-avatar">RK</div><div><p class="author-name">Rajesh Kulkarni</p><p class="author-detail">Project Director · Pune</p></div></div>
-    </div>
-    <div class="testimonial-card reveal" style="transition-delay:0.1s">
-      <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
-      <p class="testimonial-quote">"The 48-hour quote commitment is real. We tested it twice. Both times we had a full itemised quote before our internal approvals were even complete."</p>
-      <div class="testimonial-author"><div class="author-avatar">AS</div><div><p class="author-name">Amit Shah</p><p class="author-detail">VP Projects · Mumbai</p></div></div>
-    </div>
-    <div class="testimonial-card reveal" style="transition-delay:0.2s">
-      <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
-      <p class="testimonial-quote">"Installation teams showed up on the floor we needed, on the day we needed them. Three projects later — not a single delay attributed to Imperio."</p>
-      <div class="testimonial-author"><div class="author-avatar">PV</div><div><p class="author-name">Priya Venkatesh</p><p class="author-detail">Site Manager · Bangalore</p></div></div>
+  <div class="testimonial-header">
+    <p class="section-eyebrow">What Builders Say</p>
+    <h2 class="section-title">Trusted by Developers Across India</h2>
+  </div>
+  <div class="testimonial-marquee-wrap">
+    <div class="testimonial-track">
+
+      <!-- Set 1 -->
+      <div class="testimonial-card">
+        <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+        <p class="testimonial-quote">"We were running 3 towers simultaneously. Having one account manager across all of them — and a live dashboard — meant our site supervisors always knew what was coming and when."</p>
+        <div class="testimonial-author"><div class="author-avatar">RK</div><div><p class="author-name">Rajesh Kulkarni</p><p class="author-detail">Project Director · Pune</p></div></div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+        <p class="testimonial-quote">"The 48-hour quote commitment is real. We tested it twice. Both times we had a full itemised quote before our internal approvals were even complete."</p>
+        <div class="testimonial-author"><div class="author-avatar">AS</div><div><p class="author-name">Amit Shah</p><p class="author-detail">VP Projects · Mumbai</p></div></div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+        <p class="testimonial-quote">"Installation teams showed up on the floor we needed, on the day we needed them. Three projects later — not a single delay attributed to Imperio."</p>
+        <div class="testimonial-author"><div class="author-avatar">PV</div><div><p class="author-name">Priya Venkatesh</p><p class="author-detail">Site Manager · Bangalore</p></div></div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+        <p class="testimonial-quote">"Imperio's dashboard gave us full visibility from day one. No chasing, no surprises. Our possession timelines held because their production held."</p>
+        <div class="testimonial-author"><div class="author-avatar">NK</div><div><p class="author-name">Nikhil Kapoor</p><p class="author-detail">MD · Kapoor Buildtech · Delhi</p></div></div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+        <p class="testimonial-quote">"We had a tight RERA deadline on 200 units. Imperio staged the deliveries floor by floor to match our handover sequence. Clean execution, zero rework."</p>
+        <div class="testimonial-author"><div class="author-avatar">SM</div><div><p class="author-name">Suresh Mehta</p><p class="author-detail">VP Construction · Hyderabad</p></div></div>
+      </div>
+
+      <!-- Set 2 — duplicate for seamless loop -->
+      <div class="testimonial-card">
+        <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+        <p class="testimonial-quote">"We were running 3 towers simultaneously. Having one account manager across all of them — and a live dashboard — meant our site supervisors always knew what was coming and when."</p>
+        <div class="testimonial-author"><div class="author-avatar">RK</div><div><p class="author-name">Rajesh Kulkarni</p><p class="author-detail">Project Director · Pune</p></div></div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+        <p class="testimonial-quote">"The 48-hour quote commitment is real. We tested it twice. Both times we had a full itemised quote before our internal approvals were even complete."</p>
+        <div class="testimonial-author"><div class="author-avatar">AS</div><div><p class="author-name">Amit Shah</p><p class="author-detail">VP Projects · Mumbai</p></div></div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+        <p class="testimonial-quote">"Installation teams showed up on the floor we needed, on the day we needed them. Three projects later — not a single delay attributed to Imperio."</p>
+        <div class="testimonial-author"><div class="author-avatar">PV</div><div><p class="author-name">Priya Venkatesh</p><p class="author-detail">Site Manager · Bangalore</p></div></div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+        <p class="testimonial-quote">"Imperio's dashboard gave us full visibility from day one. No chasing, no surprises. Our possession timelines held because their production held."</p>
+        <div class="testimonial-author"><div class="author-avatar">NK</div><div><p class="author-name">Nikhil Kapoor</p><p class="author-detail">MD · Kapoor Buildtech · Delhi</p></div></div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+        <p class="testimonial-quote">"We had a tight RERA deadline on 200 units. Imperio staged the deliveries floor by floor to match our handover sequence. Clean execution, zero rework."</p>
+        <div class="testimonial-author"><div class="author-avatar">SM</div><div><p class="author-name">Suresh Mehta</p><p class="author-detail">VP Construction · Hyderabad</p></div></div>
+      </div>
+
     </div>
   </div>
 </section>
