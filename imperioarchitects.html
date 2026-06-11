@@ -50,8 +50,8 @@ nav{
 }
 .nav-logo{display:flex;align-items:center;text-decoration:none}
 .logo-img{display:block}
-.logo-img--nav{height:28px;width:auto}
-.logo-img--footer{height:24px;width:auto}
+.logo-img--nav{height:44px;width:auto}
+.logo-img--footer{height:36px;width:auto}
 .nav-links{display:flex;align-items:center;gap:40px;list-style:none}
 .nav-links a{
   font-family:var(--serif);font-size:11px;font-weight:600;
@@ -186,21 +186,22 @@ nav{
   background:var(--bg2);
   padding:96px 56px;
   border-bottom:0.5px solid var(--rule);
-  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:stretch;
 }
-.cred-left{}
+.cred-left{display:flex;flex-direction:column}
+.cred-image-col{position:relative;min-height:480px}
 .cred-image{
-  margin-top:40px;
   position:relative;
   border:0.5px solid var(--rule-mid);
   overflow:hidden;
+  height:100%;
 }
 .cred-image::before,.cred-image::after{
   content:'';position:absolute;width:12px;height:12px;z-index:2;pointer-events:none;
 }
 .cred-image::before{top:0;left:0;border-top:2px solid var(--blue);border-left:2px solid var(--blue)}
 .cred-image::after{bottom:0;right:0;border-bottom:2px solid var(--blue);border-right:2px solid var(--blue)}
-.cred-image img{width:100%;display:block;filter:brightness(0.97)}
+.cred-image img{width:100%;height:100%;display:block;object-fit:cover;object-position:center;filter:brightness(0.97)}
 .cred-image-label{
   position:absolute;bottom:0;left:0;right:0;
   padding:10px 14px;
@@ -719,7 +720,7 @@ footer{
     <img src="hero.jpeg" alt="Imperio frameless glass railing installation">
   </div>
   <div class="hero-content">
-    <p class="hero-anno">— IMP / ARCH / 2026</p>
+    <p class="hero-anno">Glass Railing Specialists · Since 2013</p>
     <h1 class="hero-headline">Engineered<div class="rule-line"></div>For What You Imagine</h1>
     <p class="hero-sub">Frameless glass railing systems designed to work from your drawings — with specification documentation, hardware samples, and dedicated project coordination included.</p>
     <div class="hero-actions">
@@ -758,32 +759,34 @@ footer{
     <p class="s-eyebrow">Why Architects Specify Imperio</p>
     <h2 class="s-title">Specify With Confidence</h2>
     <p class="s-sub" style="margin-top:16px">We work from your drawings — not around them. Everything you need to spec, coordinate, and deliver is prepared before you ask.</p>
-    <div class="cred-image reveal" style="transition-delay:0.15s">
-      <img src="spec.PNG" alt="Imperio specification drawing sample">
-      <div class="cred-image-label">// Sample specification drawing — IMP-DWG-2026</div>
+    <div class="cred-right" style="margin-top:40px">
+      <div class="cred-item reveal">
+        <div class="cred-num">01</div>
+        <div class="cred-body">
+          <h3 class="cred-title">Your Design Intent. Preserved.</h3>
+          <p class="cred-text">We fabricate to your drawings, not our standard sizes. Glass dimensions, hardware placement, and finish are specified by you — we execute to tolerance. Shop drawings are submitted for your review and approval before a single panel is cut.</p>
+        </div>
+      </div>
+      <div class="cred-item reveal" style="transition-delay:0.1s">
+        <div class="cred-num">02</div>
+        <div class="cred-body">
+          <h3 class="cred-title">Documentation Ready for Tender.</h3>
+          <p class="cred-text">Specification drawings, load certifications, and compliance documentation are available for download and inclusion in tender packages — formatted to work in your document set, not ours.</p>
+        </div>
+      </div>
+      <div class="cred-item reveal" style="transition-delay:0.2s">
+        <div class="cred-num">03</div>
+        <div class="cred-body">
+          <h3 class="cred-title">One Coordinator. Your Entire Project.</h3>
+          <p class="cred-text">A dedicated project coordinator handles everything from specification queries to on-site coordination — so you're not managing a vendor, you're managing a collaborator.</p>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="cred-right">
-    <div class="cred-item reveal">
-      <div class="cred-num">01</div>
-      <div class="cred-body">
-        <h3 class="cred-title">Your Design Intent. Preserved.</h3>
-        <p class="cred-text">We fabricate to your drawings, not our standard sizes. Glass dimensions, hardware placement, and finish are specified by you — we execute to tolerance. Shop drawings are submitted for your review and approval before a single panel is cut.</p>
-      </div>
-    </div>
-    <div class="cred-item reveal" style="transition-delay:0.1s">
-      <div class="cred-num">02</div>
-      <div class="cred-body">
-        <h3 class="cred-title">Documentation Ready for Tender.</h3>
-        <p class="cred-text">Specification drawings, load certifications, and compliance documentation are available for download and inclusion in tender packages — formatted to work in your document set, not ours.</p>
-      </div>
-    </div>
-    <div class="cred-item reveal" style="transition-delay:0.2s">
-      <div class="cred-num">03</div>
-      <div class="cred-body">
-        <h3 class="cred-title">One Coordinator. Your Entire Project.</h3>
-        <p class="cred-text">A dedicated project coordinator handles everything from specification queries to on-site coordination — so you're not managing a vendor, you're managing a collaborator.</p>
-      </div>
+  <div class="cred-image-col reveal" style="transition-delay:0.15s">
+    <div class="cred-image">
+      <img src="spec.PNG" alt="Imperio specification drawing sample">
+      <div class="cred-image-label">// Sample specification drawing — IMP-DWG-2026</div>
     </div>
   </div>
 </section>
