@@ -335,92 +335,155 @@ nav{
 .finish-section .s-title{color:#fff}
 .finish-section .s-sub{color:rgba(255,255,255,0.6);margin-top:16px}
 
-.finish-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:64px;align-items:center}
+.finish-inner{display:grid;grid-template-columns:1fr 1.45fr;gap:52px;margin-top:64px;align-items:start}
 
+/* ── Tabs — rich card style ── */
 .finish-tabs{display:flex;flex-direction:column;gap:0}
 .finish-tab{
-  display:flex;align-items:center;gap:20px;
-  padding:24px 0;border-bottom:0.5px solid rgba(255,255,255,0.07);
-  cursor:pointer;transition:all 0.2s;position:relative;
+  display:grid;grid-template-columns:28px 52px 1fr 22px;
+  align-items:center;gap:16px;
+  padding:20px 16px 20px 0;
+  cursor:pointer;
+  border-bottom:0.5px solid rgba(255,255,255,0.06);
+  position:relative;overflow:hidden;
+  transition:background 0.25s;
 }
 .finish-tab:last-child{border-bottom:none}
+.finish-tab::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:var(--active-finish-color,var(--blue));
+  transform:scaleY(0);transform-origin:bottom;
+  transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+.finish-tab.active::before,.finish-tab:hover::before{transform:scaleY(1)}
+.finish-tab:hover{background:rgba(255,255,255,0.025)}
+.finish-tab.active{background:rgba(255,255,255,0.04)}
+
+.finish-tab-index{
+  font-family:var(--mono);font-size:9px;font-weight:500;
+  color:rgba(255,255,255,0.18);letter-spacing:0.1em;text-align:right;
+  transition:color 0.3s;
+}
+.finish-tab.active .finish-tab-index{color:rgba(107,133,255,0.75)}
+
 .finish-tab-swatch{
-  width:36px;height:36px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.15);
-  flex-shrink:0;transition:border-color 0.3s;
+  width:52px;height:52px;border-radius:4px;
+  border:1px solid rgba(255,255,255,0.1);
+  flex-shrink:0;
+  transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;
+  position:relative;overflow:hidden;
 }
-.finish-tab.active .finish-tab-swatch{border-color:#fff}
-.swatch-black{background:radial-gradient(circle at 35% 35%,#4a4a4a,#111)}
-.swatch-silver{background:radial-gradient(circle at 35% 35%,#dcdfe2,#9a9ea2)}
-.swatch-champagne{background:radial-gradient(circle at 35% 35%,#f0d890,#c9a84c)}
-.swatch-wood{background:radial-gradient(circle at 35% 35%,#c49a6c,#7a4e2d)}
-.finish-tab-info{}
+.finish-tab-swatch::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:48%;
+  background:linear-gradient(to bottom,rgba(255,255,255,0.18),rgba(255,255,255,0));
+  border-radius:4px 4px 0 0;pointer-events:none;
+}
+.finish-tab.active .finish-tab-swatch{
+  border-color:rgba(255,255,255,0.38);transform:scale(1.06);
+  box-shadow:0 0 16px rgba(255,255,255,0.08);
+}
+.swatch-black{background:linear-gradient(145deg,#4a4a4a 0%,#1e1e1e 45%,#070707 100%)}
+.swatch-silver{background:linear-gradient(145deg,#f0f2f5 0%,#c4c8cc 45%,#8c9094 100%)}
+.swatch-champagne{background:linear-gradient(145deg,#f5d588 0%,#d4a84c 45%,#8a6018 100%)}
+.swatch-wood{background:linear-gradient(145deg,#cc9c6e 0%,#8b5e3c 45%,#4e2e10 100%)}
+
+.finish-tab-content{flex:1;min-width:0}
 .finish-tab-name{
-  font-family:var(--serif);font-size:15px;font-weight:700;
-  color:rgba(255,255,255,0.5);text-transform:uppercase;
-  letter-spacing:0.04em;transition:color 0.3s;margin-bottom:2px;
+  font-family:var(--serif);font-size:14px;font-weight:700;
+  color:rgba(255,255,255,0.42);text-transform:uppercase;
+  letter-spacing:0.04em;margin-bottom:3px;
+  transition:color 0.3s;
 }
-.finish-tab.active .finish-tab-name{color:#fff}
+.finish-tab.active .finish-tab-name,.finish-tab:hover .finish-tab-name{color:#fff}
 .finish-tab-spec{
-  font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.3);
-  letter-spacing:0.08em;transition:color 0.3s;
+  font-family:var(--mono);font-size:9.5px;color:rgba(255,255,255,0.22);
+  letter-spacing:0.07em;margin-bottom:8px;
+  transition:color 0.3s;
 }
-.finish-tab.active .finish-tab-spec{color:rgba(107,133,255,0.8)}
+.finish-tab.active .finish-tab-spec{color:rgba(107,133,255,0.72)}
+.finish-tab-tags{display:flex;gap:5px;flex-wrap:wrap}
+.finish-tab-tag{
+  font-family:var(--mono);font-size:8px;letter-spacing:0.08em;text-transform:uppercase;
+  padding:3px 7px;border:0.5px solid rgba(255,255,255,0.09);
+  color:rgba(255,255,255,0.22);
+  transition:border-color 0.3s,color 0.3s;
+}
+.finish-tab.active .finish-tab-tag{
+  border-color:rgba(107,133,255,0.32);color:rgba(107,133,255,0.65);
+}
 .finish-tab-arrow{
-  margin-left:auto;font-size:14px;
-  color:rgba(255,255,255,0.2);transition:color 0.3s,transform 0.3s;
-}
-.finish-tab.active .finish-tab-arrow{color:var(--blue);transform:translateX(4px)}
-
-.finish-preview{
-  position:relative;
   display:flex;align-items:center;justify-content:center;
-  min-height:360px;
+  color:rgba(255,255,255,0.14);transition:color 0.3s,transform 0.3s;
 }
-.finish-preview::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse at center,rgba(23,36,189,0.14) 0%,transparent 70%);
-  pointer-events:none;
+.finish-tab-arrow svg{width:16px;height:16px}
+.finish-tab.active .finish-tab-arrow,.finish-tab:hover .finish-tab-arrow{
+  color:var(--blue);transform:translateX(3px);
 }
-.finish-canvas{
-  width:100%;max-width:380px;
-  background:var(--dark2);
+
+/* ── FINISH STAGE (right preview) ── */
+.finish-stage-wrap{position:relative}
+.finish-stage{
+  position:relative;background:#0c0c13;
   border:0.5px solid rgba(255,255,255,0.1);
-  padding:40px 32px;
-  position:relative;
+  overflow:hidden;
 }
-/* corner marks on finish canvas */
-.finish-canvas::before,.finish-canvas::after{
-  content:'';position:absolute;width:14px;height:14px;
+.finish-stage::before,.finish-stage::after{
+  content:'';position:absolute;width:14px;height:14px;z-index:12;pointer-events:none;
 }
-.finish-canvas::before{top:0;left:0;border-top:1.5px solid var(--blue);border-left:1.5px solid var(--blue)}
-.finish-canvas::after{bottom:0;right:0;border-bottom:1.5px solid var(--blue);border-right:1.5px solid var(--blue)}
+.finish-stage::before{top:0;left:0;border-top:1.5px solid var(--blue);border-left:1.5px solid var(--blue)}
+.finish-stage::after{bottom:0;right:0;border-bottom:1.5px solid var(--blue);border-right:1.5px solid var(--blue)}
 
-.finish-label{
-  font-family:var(--mono);font-size:9px;letter-spacing:0.14em;
-  text-transform:uppercase;margin-bottom:24px;
-  color:rgba(255,255,255,0.35);
+.finish-backdrop-glow{
+  position:absolute;inset:0;pointer-events:none;z-index:1;
+  background:radial-gradient(ellipse at 50% 45%,rgba(30,50,200,0.22) 0%,transparent 70%);
+  transition:background 0.9s ease;
 }
-.finish-railing-preview{
-  position:relative;
-  display:flex;align-items:center;justify-content:center;
-  padding:0;height:auto;
+.finish-particles{
+  position:absolute;inset:0;pointer-events:none;z-index:10;overflow:hidden;
 }
-#railingScene{width:100%;display:block;overflow:visible}
-.hw-piece{fill:#1e1e1e;transition:fill 0.6s cubic-bezier(0.4,0,0.2,1)}
+.fp-dot{
+  position:absolute;border-radius:50%;
+  background:rgba(255,255,255,0.55);
+  animation:fpFloat var(--dur,8s) var(--delay,0s) ease-in-out infinite;
+  opacity:0;
+}
+@keyframes fpFloat{
+  0%{opacity:0;transform:translateY(0) translateX(0)}
+  12%{opacity:var(--op,0.4)}
+  88%{opacity:var(--op,0.4)}
+  100%{opacity:0;transform:translateY(var(--dy,-80px)) translateX(var(--dx,10px))}
+}
+.finish-scene-label{
+  position:relative;z-index:5;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 16px;
+  background:rgba(0,0,0,0.35);
+  border-bottom:0.5px solid rgba(255,255,255,0.06);
+}
+.fsl-ref{font-family:var(--mono);font-size:9px;letter-spacing:0.12em;color:rgba(107,133,255,0.55);text-transform:uppercase}
+.fsl-name{font-family:var(--mono);font-size:9px;letter-spacing:0.1em;color:rgba(255,255,255,0.38);text-transform:uppercase;transition:color 0.4s}
+
+#railingScene{width:100%;display:block;position:relative;z-index:3;overflow:visible}
+.hw-main,.hw-sheen{transition:none}
+.hw-wood-grain{opacity:0;transition:opacity 0.5s ease;pointer-events:none}
+
 @keyframes glassShimmer{
   0%{transform:translateX(0)}
-  100%{transform:translateX(660px)}
+  100%{transform:translateX(1080px)}
 }
 #shimmerOverlay{pointer-events:none}
-#shimmerOverlay.sweep{animation:glassShimmer 0.8s ease-in-out forwards}
-.finish-meta{
-  margin-top:24px;padding-top:16px;
+#shimmerOverlay.sweep{animation:glassShimmer 0.95s cubic-bezier(0.16,1,0.3,1) forwards}
+
+.finish-spec-strip{
+  display:flex;align-items:stretch;
   border-top:0.5px solid rgba(255,255,255,0.07);
-  display:flex;justify-content:space-between;
+  background:rgba(0,0,0,0.28);
+  position:relative;z-index:5;
 }
-.fmeta-item{}
-.fmeta-label{font-family:var(--mono);font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:3px}
-.fmeta-val{font-family:var(--mono);font-size:11px;color:#fff;font-weight:500;letter-spacing:0.04em}
+.fss-item{flex:1;padding:14px 18px;display:flex;flex-direction:column;gap:4px}
+.fss-label{font-family:var(--mono);font-size:8.5px;letter-spacing:0.13em;text-transform:uppercase;color:rgba(255,255,255,0.26)}
+.fss-val{font-family:var(--mono);font-size:11px;color:#fff;font-weight:500;letter-spacing:0.04em;transition:color 0.4s}
+.fss-divider{width:0.5px;background:rgba(255,255,255,0.06);flex-shrink:0}
 
 /* ── DOCUMENTATION — file system design ── */
 .docs-section{
@@ -709,8 +772,10 @@ footer{
   .hero-right{display:none}
   .hero-left{padding:80px 24px}
   .cred-section{grid-template-columns:1fr;padding:72px 24px;gap:48px}
-  .finish-inner{grid-template-columns:1fr;gap:48px}
+  .finish-inner{grid-template-columns:1fr;gap:32px}
   .finish-section{padding:72px 24px}
+  .finish-tab{grid-template-columns:24px 44px 1fr 20px;gap:12px;padding:16px 12px 16px 0}
+  .finish-tab-swatch{width:44px;height:44px}
   .docs-section{padding:72px 24px}
   .docs-inner{grid-template-columns:1fr;gap:40px}
   .projects-section{padding:72px 24px}
@@ -855,113 +920,325 @@ footer{
 <section class="finish-section" id="finishes">
   <p class="s-eyebrow">Hardware Finishes</p>
   <h2 class="s-title">Specify the Right Finish</h2>
-  <p class="s-sub">Three marine-grade hardware finishes — each available across all system types. Select to preview.</p>
+  <p class="s-sub">Four marine-grade hardware finishes — each available across all system types. Select to preview on a live railing model.</p>
   <div class="finish-inner">
+
+    <!-- LEFT: FINISH TABS -->
     <div class="finish-tabs" id="finishTabs">
       <div class="finish-tab active" data-finish="black">
+        <div class="finish-tab-index">01</div>
         <div class="finish-tab-swatch swatch-black"></div>
-        <div class="finish-tab-info">
-          <div class="finish-tab-name">Black</div>
-          <div class="finish-tab-spec">Powder-coated · Matte · Contemporary + traditional</div>
+        <div class="finish-tab-content">
+          <div class="finish-tab-name">Matte Black</div>
+          <div class="finish-tab-spec">Powder-coated · Scratch-resistant</div>
+          <div class="finish-tab-tags"><span class="finish-tab-tag">Contemporary</span><span class="finish-tab-tag">Traditional</span></div>
         </div>
-        <span class="finish-tab-arrow">→</span>
+        <div class="finish-tab-arrow"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
       <div class="finish-tab" data-finish="silver">
+        <div class="finish-tab-index">02</div>
         <div class="finish-tab-swatch swatch-silver"></div>
-        <div class="finish-tab-info">
-          <div class="finish-tab-name">Silver</div>
-          <div class="finish-tab-spec">Brushed · Modern elegance · Chic and stylish</div>
+        <div class="finish-tab-content">
+          <div class="finish-tab-name">Brushed Silver</div>
+          <div class="finish-tab-spec">Brushed aluminum · Corrosion-resistant</div>
+          <div class="finish-tab-tags"><span class="finish-tab-tag">Modern</span><span class="finish-tab-tag">Minimalist</span></div>
         </div>
-        <span class="finish-tab-arrow">→</span>
+        <div class="finish-tab-arrow"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
       <div class="finish-tab" data-finish="champagne">
+        <div class="finish-tab-index">03</div>
         <div class="finish-tab-swatch swatch-champagne"></div>
-        <div class="finish-tab-info">
-          <div class="finish-tab-name">Champagne</div>
-          <div class="finish-tab-spec">PVD coated · Warm luxury · Sophisticated warmth</div>
+        <div class="finish-tab-content">
+          <div class="finish-tab-name">Champagne Gold</div>
+          <div class="finish-tab-spec">PVD coated · Marine grade</div>
+          <div class="finish-tab-tags"><span class="finish-tab-tag">Luxury</span><span class="finish-tab-tag">Warm</span></div>
         </div>
-        <span class="finish-tab-arrow">→</span>
+        <div class="finish-tab-arrow"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
       <div class="finish-tab" data-finish="wood">
+        <div class="finish-tab-index">04</div>
         <div class="finish-tab-swatch swatch-wood"></div>
-        <div class="finish-tab-info">
-          <div class="finish-tab-name">Wood</div>
-          <div class="finish-tab-spec">Natural veneer · Rich warmth · Elegant blend</div>
+        <div class="finish-tab-content">
+          <div class="finish-tab-name">Teak Wood</div>
+          <div class="finish-tab-spec">Natural veneer · UV treated</div>
+          <div class="finish-tab-tags"><span class="finish-tab-tag">Natural</span><span class="finish-tab-tag">Warm</span></div>
         </div>
-        <span class="finish-tab-arrow">→</span>
+        <div class="finish-tab-arrow"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
     </div>
-    <div class="finish-preview">
-      <div class="finish-canvas">
-        <div class="finish-label" id="finishLabel">Finish Preview — Black</div>
-        <div class="finish-railing-preview">
-          <svg id="railingScene" viewBox="0 0 316 215" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="gBody" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="rgba(170,215,255,0.22)"/>
-                <stop offset="55%" stop-color="rgba(200,230,255,0.08)"/>
-                <stop offset="100%" stop-color="rgba(150,200,250,0.16)"/>
-              </linearGradient>
-              <linearGradient id="gEdge" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stop-color="rgba(255,255,255,0.26)"/>
-                <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
-              </linearGradient>
-              <linearGradient id="shimmerG" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stop-color="rgba(255,255,255,0)"/>
-                <stop offset="50%" stop-color="rgba(255,255,255,0.28)"/>
-                <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
-              </linearGradient>
-            </defs>
 
-            <!-- Floor -->
-            <line x1="0" y1="207" x2="316" y2="207" stroke="rgba(255,255,255,0.13)" stroke-width="1"/>
-            <rect x="0" y="207" width="316" height="8" fill="rgba(255,255,255,0.03)"/>
+    <!-- RIGHT: RAILING PREVIEW STAGE -->
+    <div class="finish-stage-wrap">
+      <div class="finish-stage" id="finishStage">
+        <div class="finish-particles" id="finishParticles"></div>
+        <div class="finish-backdrop-glow" id="backdropGlow"></div>
 
-            <!-- Base channel (hardware finish) -->
-            <rect class="hw-piece" id="hw-ch" x="8" y="192" width="300" height="16" rx="2"/>
-            <rect x="8" y="192" width="300" height="3" rx="1" fill="rgba(255,255,255,0.09)" style="pointer-events:none"/>
-
-            <!-- Glass Panel 1 -->
-            <rect x="18" y="16" width="76" height="178" fill="url(#gBody)" stroke="rgba(180,220,255,0.22)" stroke-width="0.6"/>
-            <rect x="18" y="16" width="5" height="178" fill="url(#gEdge)"/>
-            <rect x="30" y="22" width="14" height="164" fill="rgba(255,255,255,0.045)" rx="1"/>
-            <rect x="50" y="22" width="6" height="164" fill="rgba(255,255,255,0.025)" rx="1"/>
-
-            <!-- Glass Panel 2 -->
-            <rect x="120" y="16" width="76" height="178" fill="url(#gBody)" stroke="rgba(180,220,255,0.22)" stroke-width="0.6"/>
-            <rect x="120" y="16" width="5" height="178" fill="url(#gEdge)"/>
-            <rect x="132" y="22" width="14" height="164" fill="rgba(255,255,255,0.045)" rx="1"/>
-            <rect x="152" y="22" width="6" height="164" fill="rgba(255,255,255,0.025)" rx="1"/>
-
-            <!-- Glass Panel 3 -->
-            <rect x="222" y="16" width="76" height="178" fill="url(#gBody)" stroke="rgba(180,220,255,0.22)" stroke-width="0.6"/>
-            <rect x="222" y="16" width="5" height="178" fill="url(#gEdge)"/>
-            <rect x="234" y="22" width="14" height="164" fill="rgba(255,255,255,0.045)" rx="1"/>
-            <rect x="254" y="22" width="6" height="164" fill="rgba(255,255,255,0.025)" rx="1"/>
-
-            <!-- Clamp Panel 1 (center x=56) -->
-            <rect class="hw-piece" id="hw-cl1b" x="44" y="170" width="24" height="8" rx="1.5"/>
-            <rect class="hw-piece" id="hw-cl1" x="48" y="176" width="16" height="26" rx="2"/>
-
-            <!-- Clamp Panel 2 (center x=158) -->
-            <rect class="hw-piece" id="hw-cl2b" x="146" y="170" width="24" height="8" rx="1.5"/>
-            <rect class="hw-piece" id="hw-cl2" x="150" y="176" width="16" height="26" rx="2"/>
-
-            <!-- Clamp Panel 3 (center x=260) -->
-            <rect class="hw-piece" id="hw-cl3b" x="248" y="170" width="24" height="8" rx="1.5"/>
-            <rect class="hw-piece" id="hw-cl3" x="252" y="176" width="16" height="26" rx="2"/>
-
-            <!-- Shimmer overlay (animated on finish switch) -->
-            <rect id="shimmerOverlay" x="-330" y="0" width="330" height="215" fill="url(#shimmerG)"/>
-          </svg>
+        <!-- Blueprint label bar -->
+        <div class="finish-scene-label">
+          <span class="fsl-ref">IMP-FINISH-2026</span>
+          <span class="fsl-name" id="finishSceneName">Matte Black — Frameless Glass Railing</span>
         </div>
-        <div class="finish-meta">
-          <div class="fmeta-item"><div class="fmeta-label">Finish</div><div class="fmeta-val" id="fMetaFinish">Black</div></div>
-          <div class="fmeta-item"><div class="fmeta-label">Grade</div><div class="fmeta-val" id="fMetaGrade">Powder Coated</div></div>
-          <div class="fmeta-item"><div class="fmeta-label">Ref</div><div class="fmeta-val" id="fMetaRef">RAL 9005</div></div>
+
+        <!-- Main railing SVG -->
+        <svg id="railingScene" viewBox="0 0 520 342" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- ── Hardware gradients: 4 finishes ── -->
+            <linearGradient id="hwBlack" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#3e3e3e"/><stop offset="35%" stop-color="#1e1e1e"/><stop offset="100%" stop-color="#080808"/>
+            </linearGradient>
+            <linearGradient id="hwBlackS" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.14)"/><stop offset="40%" stop-color="rgba(255,255,255,0.05)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+            </linearGradient>
+
+            <linearGradient id="hwSilver" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#f0f2f5"/><stop offset="35%" stop-color="#c6cacd"/><stop offset="100%" stop-color="#8c9094"/>
+            </linearGradient>
+            <linearGradient id="hwSilverS" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.55)"/><stop offset="22%" stop-color="rgba(255,255,255,0.28)"/><stop offset="60%" stop-color="rgba(255,255,255,0.08)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+            </linearGradient>
+            <!-- Brushed lines for silver -->
+            <pattern id="silverBrush" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(0)">
+              <line x1="0" y1="0" x2="0" y2="4" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+            </pattern>
+
+            <linearGradient id="hwChamp" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#f7d98c"/><stop offset="35%" stop-color="#d4a84c"/><stop offset="100%" stop-color="#885e16"/>
+            </linearGradient>
+            <linearGradient id="hwChampS" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="rgba(255,240,148,0.6)"/><stop offset="32%" stop-color="rgba(255,220,100,0.22)"/><stop offset="100%" stop-color="rgba(255,200,60,0)"/>
+            </linearGradient>
+
+            <linearGradient id="hwWood" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#cfa072"/><stop offset="35%" stop-color="#8b5e3c"/><stop offset="100%" stop-color="#4a2a0e"/>
+            </linearGradient>
+            <linearGradient id="hwWoodS" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="rgba(215,175,115,0.42)"/><stop offset="40%" stop-color="rgba(195,145,85,0.16)"/><stop offset="100%" stop-color="rgba(180,120,60,0)"/>
+            </linearGradient>
+            <pattern id="woodGrain" x="0" y="0" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(10)">
+              <line x1="0" y1="0" x2="0" y2="9" stroke="rgba(0,0,0,0.22)" stroke-width="1.8"/>
+              <line x1="4.5" y1="0" x2="4.5" y2="9" stroke="rgba(0,0,0,0.09)" stroke-width="0.7"/>
+            </pattern>
+
+            <!-- ── Glass ── -->
+            <linearGradient id="glassBody" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="rgba(165,215,255,0.22)"/>
+              <stop offset="45%" stop-color="rgba(110,175,248,0.09)"/>
+              <stop offset="100%" stop-color="rgba(145,205,255,0.18)"/>
+            </linearGradient>
+            <linearGradient id="glassTri" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.18)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+            </linearGradient>
+            <linearGradient id="glassEdgeL" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="rgba(232,250,255,1)"/><stop offset="100%" stop-color="rgba(232,250,255,0)"/>
+            </linearGradient>
+            <linearGradient id="glassEdgeT" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="rgba(205,242,255,0.95)"/><stop offset="100%" stop-color="rgba(200,238,255,0.28)"/>
+            </linearGradient>
+
+            <!-- ── Environment ── -->
+            <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#0c0c14"/><stop offset="65%" stop-color="#0f0f18"/><stop offset="100%" stop-color="#14141e"/>
+            </linearGradient>
+            <linearGradient id="floorG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#181822"/><stop offset="100%" stop-color="#0c0c14"/>
+            </linearGradient>
+            <radialGradient id="ambGlow" cx="50%" cy="42%" r="56%">
+              <stop id="ambStop" offset="0%" stop-color="rgba(30,50,200,0.20)"/>
+              <stop offset="58%" stop-color="rgba(18,28,130,0.07)"/>
+              <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+            </radialGradient>
+
+            <!-- Shadow + reflection -->
+            <linearGradient id="chanShadow" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="rgba(0,0,0,0.75)"/><stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+            </linearGradient>
+            <linearGradient id="reflFade" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.075)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+            </linearGradient>
+            <radialGradient id="caustic" cx="50%" cy="25%" r="70%">
+              <stop offset="0%" stop-color="rgba(105,168,255,0.13)"/><stop offset="100%" stop-color="rgba(105,168,255,0)"/>
+            </radialGradient>
+
+            <!-- Shimmer sweep -->
+            <linearGradient id="shimmerG" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="rgba(255,255,255,0)"/>
+              <stop offset="50%" stop-color="rgba(255,255,255,0.32)"/>
+              <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+            </linearGradient>
+
+            <!-- Clip paths -->
+            <clipPath id="gClip1"><rect x="50" y="24" width="128" height="252"/></clipPath>
+            <clipPath id="gClip2"><rect x="196" y="24" width="128" height="252"/></clipPath>
+            <clipPath id="gClip3"><rect x="342" y="24" width="128" height="252"/></clipPath>
+            <clipPath id="sClip"><rect width="520" height="342"/></clipPath>
+
+            <!-- Hardware drop shadow -->
+            <filter id="hwShadowF" x="-5%" y="-25%" width="110%" height="145%">
+              <feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="rgba(0,0,0,0.85)"/>
+            </filter>
+            <!-- Glass glow on edges -->
+            <filter id="edgeGlow" x="-20%" y="0%" width="140%" height="100%">
+              <feGaussianBlur stdDeviation="1.8" result="blur"/>
+              <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+            </filter>
+          </defs>
+
+          <g clip-path="url(#sClip)">
+
+          <!-- BG + ambient glow -->
+          <rect width="520" height="342" fill="url(#bgGrad)"/>
+          <ellipse cx="260" cy="145" rx="315" ry="225" fill="url(#ambGlow)"/>
+
+          <!-- Back wall faint lines -->
+          <line x1="0" y1="112" x2="520" y2="112" stroke="rgba(255,255,255,0.014)" stroke-width="0.5"/>
+          <line x1="0" y1="186" x2="520" y2="186" stroke="rgba(255,255,255,0.009)" stroke-width="0.5"/>
+
+          <!-- FLOOR -->
+          <rect x="0" y="280" width="520" height="62" fill="url(#floorG)"/>
+          <line x1="0" y1="280" x2="520" y2="280" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+          <!-- Tile grid -->
+          <line x1="0" y1="299" x2="520" y2="299" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/>
+          <line x1="0" y1="318" x2="520" y2="318" stroke="rgba(255,255,255,0.025)" stroke-width="0.5"/>
+          <line x1="0" y1="337" x2="520" y2="337" stroke="rgba(255,255,255,0.018)" stroke-width="0.5"/>
+          <!-- Perspective vertical lines on floor -->
+          <line x1="130" y1="280" x2="118" y2="342" stroke="rgba(255,255,255,0.02)" stroke-width="0.5"/>
+          <line x1="260" y1="280" x2="250" y2="342" stroke="rgba(255,255,255,0.02)" stroke-width="0.5"/>
+          <line x1="390" y1="280" x2="382" y2="342" stroke="rgba(255,255,255,0.02)" stroke-width="0.5"/>
+
+          <!-- Caustic light pools through glass on floor -->
+          <ellipse cx="114" cy="295" rx="60" ry="13" fill="url(#caustic)"/>
+          <ellipse cx="260" cy="295" rx="60" ry="13" fill="url(#caustic)"/>
+          <ellipse cx="406" cy="295" rx="60" ry="13" fill="url(#caustic)"/>
+
+          <!-- GLASS PANELS — ambient occlusion in gaps -->
+          <rect x="28" y="24" width="24" height="252" fill="rgba(0,0,0,0.48)"/>
+          <rect x="176" y="24" width="22" height="252" fill="rgba(0,0,0,0.58)"/>
+          <rect x="322" y="24" width="22" height="252" fill="rgba(0,0,0,0.58)"/>
+          <rect x="468" y="24" width="26" height="252" fill="rgba(0,0,0,0.48)"/>
+
+          <!-- PANEL 1 -->
+          <rect x="50" y="24" width="128" height="252" fill="url(#glassBody)"/>
+          <polygon points="50,24 104,24 50,88" fill="url(#glassTri)" clip-path="url(#gClip1)"/>
+          <rect x="80" y="24" width="20" height="252" fill="rgba(255,255,255,0.04)" clip-path="url(#gClip1)"/>
+          <rect x="122" y="24" width="11" height="252" fill="rgba(255,255,255,0.025)" clip-path="url(#gClip1)"/>
+          <rect x="50" y="24" width="128" height="252" fill="rgba(14,28,90,0.08)"/>
+          <rect x="50" y="24" width="4" height="252" fill="url(#glassEdgeL)" filter="url(#edgeGlow)"/>
+          <rect x="174" y="24" width="4" height="252" fill="rgba(118,188,248,0.28)"/>
+          <rect x="50" y="24" width="128" height="4" fill="url(#glassEdgeT)"/>
+          <rect x="50" y="272" width="128" height="4" fill="rgba(100,168,228,0.48)"/>
+
+          <!-- PANEL 2 -->
+          <rect x="196" y="24" width="128" height="252" fill="url(#glassBody)"/>
+          <polygon points="196,24 250,24 196,88" fill="url(#glassTri)" clip-path="url(#gClip2)"/>
+          <rect x="226" y="24" width="20" height="252" fill="rgba(255,255,255,0.04)" clip-path="url(#gClip2)"/>
+          <rect x="268" y="24" width="11" height="252" fill="rgba(255,255,255,0.025)" clip-path="url(#gClip2)"/>
+          <rect x="196" y="24" width="128" height="252" fill="rgba(14,28,90,0.08)"/>
+          <rect x="196" y="24" width="4" height="252" fill="url(#glassEdgeL)" filter="url(#edgeGlow)"/>
+          <rect x="320" y="24" width="4" height="252" fill="rgba(118,188,248,0.28)"/>
+          <rect x="196" y="24" width="128" height="4" fill="url(#glassEdgeT)"/>
+          <rect x="196" y="272" width="128" height="4" fill="rgba(100,168,228,0.48)"/>
+
+          <!-- PANEL 3 -->
+          <rect x="342" y="24" width="128" height="252" fill="url(#glassBody)"/>
+          <polygon points="342,24 396,24 342,88" fill="url(#glassTri)" clip-path="url(#gClip3)"/>
+          <rect x="372" y="24" width="20" height="252" fill="rgba(255,255,255,0.04)" clip-path="url(#gClip3)"/>
+          <rect x="414" y="24" width="11" height="252" fill="rgba(255,255,255,0.025)" clip-path="url(#gClip3)"/>
+          <rect x="342" y="24" width="128" height="252" fill="rgba(14,28,90,0.08)"/>
+          <rect x="342" y="24" width="4" height="252" fill="url(#glassEdgeL)" filter="url(#edgeGlow)"/>
+          <rect x="466" y="24" width="4" height="252" fill="rgba(118,188,248,0.28)"/>
+          <rect x="342" y="24" width="128" height="4" fill="url(#glassEdgeT)"/>
+          <rect x="342" y="272" width="128" height="4" fill="rgba(100,168,228,0.48)"/>
+
+          <!-- BASE CHANNEL -->
+          <rect x="18" y="275" width="484" height="16" fill="url(#chanShadow)" rx="2"/>
+          <!-- Top face of channel (3D highlight) -->
+          <rect id="hw-ch-top" class="hw-main" x="18" y="270" width="484" height="5" fill="url(#hwBlack)" rx="1"/>
+          <!-- Main channel body -->
+          <rect id="hw-ch" class="hw-main" x="18" y="272" width="484" height="21" fill="url(#hwBlack)" rx="2" filter="url(#hwShadowF)"/>
+          <!-- Sheen overlay (directional highlight) -->
+          <rect class="hw-sheen" x="18" y="272" width="484" height="21" fill="url(#hwBlackS)" rx="2"/>
+          <!-- Silver brush texture (hidden except for silver) -->
+          <rect class="hw-brush" x="18" y="272" width="484" height="21" fill="url(#silverBrush)" rx="2" opacity="0"/>
+          <!-- Specular glint spot -->
+          <ellipse cx="96" cy="277" rx="52" ry="4" fill="rgba(255,255,255,0.06)"/>
+          <!-- Wood grain overlay (hidden by default) -->
+          <rect class="hw-wood-grain" x="18" y="272" width="484" height="21" fill="url(#woodGrain)" rx="2"/>
+
+          <!-- CLAMP 1 (center of panel 1 ≈ x=114) -->
+          <g filter="url(#hwShadowF)">
+            <rect id="hw-cl1b" class="hw-main" x="104" y="260" width="22" height="8" fill="url(#hwBlack)" rx="1.5"/>
+            <rect id="hw-cl1" class="hw-main" x="108" y="265" width="14" height="22" fill="url(#hwBlack)" rx="2"/>
+          </g>
+          <rect class="hw-sheen" x="108" y="265" width="14" height="22" fill="url(#hwBlackS)" rx="2"/>
+          <rect class="hw-brush" x="108" y="265" width="14" height="22" fill="url(#silverBrush)" rx="2" opacity="0"/>
+          <rect class="hw-wood-grain" x="108" y="265" width="14" height="22" fill="url(#woodGrain)" rx="2"/>
+          <circle cx="113" cy="272" r="2.5" fill="rgba(0,0,0,0.6)"/>
+          <circle cx="113" cy="272" r="1" fill="rgba(255,255,255,0.18)"/>
+          <circle cx="120" cy="272" r="2.5" fill="rgba(0,0,0,0.6)"/>
+          <circle cx="120" cy="272" r="1" fill="rgba(255,255,255,0.18)"/>
+
+          <!-- CLAMP 2 (center of panel 2 ≈ x=260) -->
+          <g filter="url(#hwShadowF)">
+            <rect id="hw-cl2b" class="hw-main" x="250" y="260" width="22" height="8" fill="url(#hwBlack)" rx="1.5"/>
+            <rect id="hw-cl2" class="hw-main" x="254" y="265" width="14" height="22" fill="url(#hwBlack)" rx="2"/>
+          </g>
+          <rect class="hw-sheen" x="254" y="265" width="14" height="22" fill="url(#hwBlackS)" rx="2"/>
+          <rect class="hw-brush" x="254" y="265" width="14" height="22" fill="url(#silverBrush)" rx="2" opacity="0"/>
+          <rect class="hw-wood-grain" x="254" y="265" width="14" height="22" fill="url(#woodGrain)" rx="2"/>
+          <circle cx="259" cy="272" r="2.5" fill="rgba(0,0,0,0.6)"/>
+          <circle cx="259" cy="272" r="1" fill="rgba(255,255,255,0.18)"/>
+          <circle cx="266" cy="272" r="2.5" fill="rgba(0,0,0,0.6)"/>
+          <circle cx="266" cy="272" r="1" fill="rgba(255,255,255,0.18)"/>
+
+          <!-- CLAMP 3 (center of panel 3 ≈ x=406) -->
+          <g filter="url(#hwShadowF)">
+            <rect id="hw-cl3b" class="hw-main" x="396" y="260" width="22" height="8" fill="url(#hwBlack)" rx="1.5"/>
+            <rect id="hw-cl3" class="hw-main" x="400" y="265" width="14" height="22" fill="url(#hwBlack)" rx="2"/>
+          </g>
+          <rect class="hw-sheen" x="400" y="265" width="14" height="22" fill="url(#hwBlackS)" rx="2"/>
+          <rect class="hw-brush" x="400" y="265" width="14" height="22" fill="url(#silverBrush)" rx="2" opacity="0"/>
+          <rect class="hw-wood-grain" x="400" y="265" width="14" height="22" fill="url(#woodGrain)" rx="2"/>
+          <circle cx="405" cy="272" r="2.5" fill="rgba(0,0,0,0.6)"/>
+          <circle cx="405" cy="272" r="1" fill="rgba(255,255,255,0.18)"/>
+          <circle cx="412" cy="272" r="2.5" fill="rgba(0,0,0,0.6)"/>
+          <circle cx="412" cy="272" r="1" fill="rgba(255,255,255,0.18)"/>
+
+          <!-- FLOOR REFLECTION -->
+          <rect x="18" y="295" width="484" height="30" fill="url(#reflFade)" opacity="0.65"/>
+
+          <!-- DIMENSION ANNOTATIONS -->
+          <line x1="50" y1="11" x2="178" y2="11" stroke="rgba(52,92,215,0.55)" stroke-width="0.5" stroke-dasharray="3,2"/>
+          <line x1="50" y1="8" x2="50" y2="15" stroke="rgba(52,92,215,0.55)" stroke-width="0.5"/>
+          <line x1="178" y1="8" x2="178" y2="15" stroke="rgba(52,92,215,0.55)" stroke-width="0.5"/>
+          <text x="114" y="9.5" font-family="DM Mono,monospace" font-size="7.5" fill="rgba(92,135,242,0.85)" text-anchor="middle">1200mm</text>
+
+          <line x1="34" y1="24" x2="34" y2="272" stroke="rgba(52,92,215,0.5)" stroke-width="0.5" stroke-dasharray="3,2"/>
+          <line x1="31" y1="24" x2="38" y2="24" stroke="rgba(52,92,215,0.5)" stroke-width="0.5"/>
+          <line x1="31" y1="272" x2="38" y2="272" stroke="rgba(52,92,215,0.5)" stroke-width="0.5"/>
+          <text x="19" y="152" font-family="DM Mono,monospace" font-size="7.5" fill="rgba(92,135,242,0.8)" text-anchor="middle" transform="rotate(-90 19 152)">1100mm</text>
+
+          <line x1="472" y1="20" x2="472" y2="36" stroke="rgba(52,92,215,0.4)" stroke-width="0.5"/>
+          <text x="480" y="30" font-family="DM Mono,monospace" font-size="7" fill="rgba(92,135,242,0.7)">10mm</text>
+
+          <!-- SHIMMER OVERLAY -->
+          <rect id="shimmerOverlay" x="-540" y="0" width="540" height="342" fill="url(#shimmerG)"/>
+
+          </g>
+        </svg>
+
+        <!-- Spec strip -->
+        <div class="finish-spec-strip">
+          <div class="fss-item"><div class="fss-label">Finish</div><div class="fss-val" id="fMetaFinish">Matte Black</div></div>
+          <div class="fss-divider"></div>
+          <div class="fss-item"><div class="fss-label">Process</div><div class="fss-val" id="fMetaGrade">Powder Coated</div></div>
+          <div class="fss-divider"></div>
+          <div class="fss-item"><div class="fss-label">Reference</div><div class="fss-val" id="fMetaRef">RAL 9005</div></div>
+          <div class="fss-divider"></div>
+          <div class="fss-item"><div class="fss-label">Grade</div><div class="fss-val" id="fMetaAvail">Marine Grade</div></div>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -1164,52 +1441,110 @@ counters.forEach(el=>countObs.observe(el));
 // Finish selector
 const finishData={
   black:{
-    label:'Finish Preview — Black',
-    hw:'#1e1e1e',
-    name:'Black',grade:'Powder Coated',ref:'Matte'
+    sceneName:'Matte Black — Frameless Glass Railing',
+    mainGrad:'hwBlack',sheenGrad:'hwBlackS',
+    glowColor:'rgba(30,50,200,0.22)',tabColor:'#2a2a2a',
+    name:'Matte Black',grade:'Powder Coated',ref:'RAL 9005',avail:'Marine Grade',
+    wood:false,silver:false
   },
   silver:{
-    label:'Finish Preview — Silver',
-    hw:'#b2b6ba',
-    name:'Silver',grade:'Brushed',ref:'SV-01'
+    sceneName:'Brushed Silver — Frameless Glass Railing',
+    mainGrad:'hwSilver',sheenGrad:'hwSilverS',
+    glowColor:'rgba(155,185,215,0.18)',tabColor:'#c4c8cc',
+    name:'Brushed Silver',grade:'Brushed Aluminum',ref:'SV-01',avail:'Marine Grade',
+    wood:false,silver:true
   },
   champagne:{
-    label:'Finish Preview — Champagne',
-    hw:'#c9a84c',
-    name:'Champagne',grade:'PVD Coated',ref:'CP-01'
+    sceneName:'Champagne Gold — Frameless Glass Railing',
+    mainGrad:'hwChamp',sheenGrad:'hwChampS',
+    glowColor:'rgba(198,152,38,0.24)',tabColor:'#d4a84c',
+    name:'Champagne Gold',grade:'PVD Coated',ref:'CP-01',avail:'Marine Grade',
+    wood:false,silver:false
   },
   wood:{
-    label:'Finish Preview — Wood',
-    hw:'#8b5e3c',
-    name:'Wood',grade:'Natural Veneer',ref:'WD-NV'
+    sceneName:'Teak Wood — Frameless Glass Railing',
+    mainGrad:'hwWood',sheenGrad:'hwWoodS',
+    glowColor:'rgba(165,108,48,0.22)',tabColor:'#8b5e3c',
+    name:'Teak Wood',grade:'Natural Veneer',ref:'WD-NV',avail:'UV Treated',
+    wood:true,silver:false
   }
 };
 
-const hwIds=['hw-ch','hw-cl1','hw-cl1b','hw-cl2','hw-cl2b','hw-cl3','hw-cl3b'];
+const hwMainIds=['hw-ch','hw-ch-top','hw-cl1','hw-cl1b','hw-cl2','hw-cl2b','hw-cl3','hw-cl3b'];
 
 function triggerShimmer(){
   const el=document.getElementById('shimmerOverlay');
+  if(!el)return;
   el.classList.remove('sweep');
   void el.offsetWidth;
   el.classList.add('sweep');
+}
+
+function applyFinish(key){
+  const f=finishData[key];
+  // Update main hardware fills
+  hwMainIds.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.setAttribute('fill','url(#'+f.mainGrad+')');
+  });
+  // Update sheen overlays
+  document.querySelectorAll('.hw-sheen').forEach(el=>{
+    el.setAttribute('fill','url(#'+f.sheenGrad+')');
+  });
+  // Wood grain
+  document.querySelectorAll('.hw-wood-grain').forEach(el=>{
+    el.style.opacity=f.wood?'0.9':'0';
+  });
+  // Silver brush texture
+  document.querySelectorAll('.hw-brush').forEach(el=>{
+    el.style.opacity=f.silver?'1':'0';
+  });
+  // Backdrop glow color
+  const glow=document.getElementById('backdropGlow');
+  if(glow) glow.style.background='radial-gradient(ellipse at 50% 45%,'+f.glowColor+' 0%,transparent 70%)';
+  // SVG ambient glow
+  const amb=document.getElementById('ambStop');
+  if(amb) amb.setAttribute('stop-color',f.glowColor);
+  // Tab ::before accent color
+  document.documentElement.style.setProperty('--active-finish-color',f.tabColor);
+  // Scene label
+  const sn=document.getElementById('finishSceneName');
+  if(sn) sn.textContent=f.sceneName;
+  // Spec strip
+  document.getElementById('fMetaFinish').textContent=f.name;
+  document.getElementById('fMetaGrade').textContent=f.grade;
+  document.getElementById('fMetaRef').textContent=f.ref;
+  document.getElementById('fMetaAvail').textContent=f.avail;
+  triggerShimmer();
 }
 
 document.querySelectorAll('.finish-tab').forEach(tab=>{
   tab.addEventListener('click',()=>{
     document.querySelectorAll('.finish-tab').forEach(t=>t.classList.remove('active'));
     tab.classList.add('active');
-    const f=finishData[tab.dataset.finish];
-    document.getElementById('finishLabel').textContent=f.label;
-    hwIds.forEach(id=>{
-      const el=document.getElementById(id);
-      if(el) el.style.fill=f.hw;
-    });
-    triggerShimmer();
-    document.getElementById('fMetaFinish').textContent=f.name;
-    document.getElementById('fMetaGrade').textContent=f.grade;
-    document.getElementById('fMetaRef').textContent=f.ref;
+    applyFinish(tab.dataset.finish);
   });
 });
+
+// Atmospheric particles
+(function(){
+  const c=document.getElementById('finishParticles');
+  if(!c)return;
+  for(let i=0;i<22;i++){
+    const d=document.createElement('div');
+    d.className='fp-dot';
+    const sz=Math.random()*2.2+0.8;
+    const x=Math.random()*100;
+    const y=15+Math.random()*72;
+    const dur=7+Math.random()*11;
+    const delay=-(Math.random()*12);
+    const dy=-(35+Math.random()*90);
+    const dx=(Math.random()-0.5)*50;
+    const op=0.12+Math.random()*0.32;
+    d.style.cssText=`width:${sz}px;height:${sz}px;left:${x}%;top:${y}%;--dur:${dur}s;--delay:${delay}s;--dy:${dy}px;--dx:${dx}px;--op:${op}`;
+    c.appendChild(d);
+  }
+})();
 
 // Doc cards — open request form on click
 document.querySelectorAll('.doc-card').forEach(card=>{
