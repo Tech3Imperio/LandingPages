@@ -103,10 +103,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);display:
 .adv-bar{position:absolute;top:0;left:0;right:0;height:2px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform 0.5s cubic-bezier(0.16,1,0.3,1);z-index:2}
 .adv-card:hover .adv-bar{transform:scaleX(1)}
 .adv-card-body{padding:44px 40px;display:flex;flex-direction:column;flex:1}
-.adv-img-wrap{width:100%;height:200px;overflow:hidden;position:relative;flex-shrink:0}
-.adv-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.85) saturate(0.85);transition:transform 0.6s cubic-bezier(0.16,1,0.3,1),filter 0.4s}
-.adv-card:hover .adv-img-wrap img{transform:scale(1.04);filter:brightness(0.95) saturate(1)}
-.adv-img-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(17,17,17,0.6) 100%);pointer-events:none}
+.adv-img-wrap{width:100%;height:220px;overflow:hidden;position:relative;flex-shrink:0;background-size:200% auto;background-repeat:no-repeat;background-position:center center;filter:brightness(0.85) saturate(0.85);transition:filter 0.4s,background-size 0.6s cubic-bezier(0.16,1,0.3,1)}
+.adv-card:hover .adv-img-wrap{filter:brightness(0.95) saturate(1);background-size:210% auto}
+.adv-img-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(17,17,17,0.7) 100%);pointer-events:none}
 .adv-icon{width:48px;height:48px;border:0.5px solid var(--border-mid);border-radius:1px;display:flex;align-items:center;justify-content:center;margin-bottom:28px;transition:border-color 0.3s,background 0.3s;flex-shrink:0}
 .adv-card:hover .adv-icon{border-color:var(--blue);background:var(--blue-dim)}
 .adv-icon svg{width:22px;height:22px;stroke:var(--t2);transition:stroke 0.3s;fill:none;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
@@ -426,11 +425,7 @@ footer{background:var(--bg2);border-top:0.5px solid var(--border);padding:44px 6
     <!-- Card 2: 48hr Quote — left crop of Gemini image (workflow/document icons) -->
     <div class="adv-card reveal" style="transition-delay:0.1s">
       <div class="adv-bar"></div>
-      <div class="adv-img-wrap">
-        <img src="Gemini_Generated_Image_e9nfyae9nfyae9nf.png"
-             alt="Quote workflow — brief to itemised quote in 48 hours"
-             style="object-position:18% center">
-      </div>
+      <div class="adv-img-wrap" style="background-image:url('Gemini_Generated_Image_e9nfyae9nfyae9nf.png');background-position:0% center" aria-label="Quote workflow graphic"></div>
       <div class="adv-card-body">
         <div class="adv-icon">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
@@ -443,11 +438,7 @@ footer{background:var(--bg2);border-top:0.5px solid var(--border);padding:44px 6
     <!-- Card 3: On-Site Teams — right crop of Gemini image (workers on balcony) -->
     <div class="adv-card reveal" style="transition-delay:0.2s">
       <div class="adv-bar"></div>
-      <div class="adv-img-wrap">
-        <img src="Gemini_Generated_Image_e9nfyae9nfyae9nf.png"
-             alt="Installation crew working on high-rise glass balcony railings"
-             style="object-position:82% center">
-      </div>
+      <div class="adv-img-wrap" style="background-image:url('Gemini_Generated_Image_e9nfyae9nfyae9nf.png');background-position:100% center" aria-label="On-site installation team"></div>
       <div class="adv-card-body">
         <div class="adv-icon">
           <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
