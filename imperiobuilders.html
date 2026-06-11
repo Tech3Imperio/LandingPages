@@ -103,8 +103,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);display:
 .adv-bar{position:absolute;top:0;left:0;right:0;height:2px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform 0.5s cubic-bezier(0.16,1,0.3,1);z-index:2}
 .adv-card:hover .adv-bar{transform:scaleX(1)}
 .adv-card-body{padding:44px 40px;display:flex;flex-direction:column;flex:1}
-.adv-img-wrap{width:100%;height:220px;overflow:hidden;position:relative;flex-shrink:0;background-size:200% auto;background-repeat:no-repeat;background-position:center center;filter:brightness(0.85) saturate(0.85);transition:filter 0.4s,background-size 0.6s cubic-bezier(0.16,1,0.3,1)}
-.adv-card:hover .adv-img-wrap{filter:brightness(0.95) saturate(1);background-size:210% auto}
+.adv-img-wrap{width:100%;height:280px;overflow:hidden;position:relative;flex-shrink:0;background-size:cover;background-repeat:no-repeat;background-position:center center;filter:brightness(0.85) saturate(0.85);transition:filter 0.4s,background-size 0.6s cubic-bezier(0.16,1,0.3,1)}
+.adv-card:hover .adv-img-wrap{filter:brightness(0.95) saturate(1);background-size:110%}
 .adv-img-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(17,17,17,0.7) 100%);pointer-events:none}
 .adv-icon{width:48px;height:48px;border:0.5px solid var(--border-mid);border-radius:1px;display:flex;align-items:center;justify-content:center;margin-bottom:28px;transition:border-color 0.3s,background 0.3s;flex-shrink:0}
 .adv-card:hover .adv-icon{border-color:var(--blue);background:var(--blue-dim)}
@@ -410,39 +410,31 @@ footer{background:var(--bg2);border-top:0.5px solid var(--border);padding:44px 6
   <h2 class="section-title">Built For Project Scale</h2>
   <div class="adv-grid">
 
-    <!-- Card 1: One Manager — text only -->
+    <!-- Card 1: LED Glass Railings -->
     <div class="adv-card reveal">
       <div class="adv-bar"></div>
+      <div class="adv-img-wrap" style="background-image:url('led.jpeg')" aria-label="Signature LED glass railings"></div>
       <div class="adv-card-body">
-        <div class="adv-icon">
-          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        </div>
-        <h3 class="adv-title">One Manager. Your Entire Project.</h3>
-        <p class="adv-body">A dedicated account manager handles your project from first quote to final installation. One number to call. One person who knows every floor, every unit, every timeline.</p>
+        <h3 class="adv-title">Signature LED Glass Railings.</h3>
+        <p class="adv-body">Secure an immediate competitive edge with first-in-segment integrated LED railings.</p>
       </div>
     </div>
 
-    <!-- Card 2: 48hr Quote — left crop of Gemini image (workflow/document icons) -->
+    <!-- Card 2: 48hr Quote — left crop of Gemini image -->
     <div class="adv-card reveal" style="transition-delay:0.1s">
       <div class="adv-bar"></div>
-      <div class="adv-img-wrap" style="background-image:url('Gemini_Generated_Image_e9nfyae9nfyae9nf.png');background-position:0% center" aria-label="Quote workflow graphic"></div>
+      <div class="adv-img-wrap" style="background-image:url('Gemini_Generated_Image_e9nfyae9nfyae9nf.png');background-size:200% auto;background-position:0% center" aria-label="Quote workflow graphic"></div>
       <div class="adv-card-body">
-        <div class="adv-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        </div>
         <h3 class="adv-title">Quote in 48 Hours. Always.</h3>
         <p class="adv-body">Submit your drawings or brief today. Receive a detailed bulk quote within 48 hours — itemised by unit, floor, and finish. No waiting weeks for a number.</p>
       </div>
     </div>
 
-    <!-- Card 3: On-Site Teams — right crop of Gemini image (workers on balcony) -->
+    <!-- Card 3: On-Site Teams — right crop of Gemini image -->
     <div class="adv-card reveal" style="transition-delay:0.2s">
       <div class="adv-bar"></div>
-      <div class="adv-img-wrap" style="background-image:url('Gemini_Generated_Image_e9nfyae9nfyae9nf.png');background-position:100% center" aria-label="On-site installation team"></div>
+      <div class="adv-img-wrap" style="background-image:url('Gemini_Generated_Image_e9nfyae9nfyae9nf.png');background-size:200% auto;background-position:100% center" aria-label="On-site installation team"></div>
       <div class="adv-card-body">
-        <div class="adv-icon">
-          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-        </div>
         <h3 class="adv-title">On-Site Teams That Show Up.</h3>
         <p class="adv-body">Our installation crews are trained, coordinated, and scheduled around your site plan — not theirs. We work to your possession dates, not the other way around.</p>
       </div>
